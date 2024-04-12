@@ -14,7 +14,6 @@ ENDM
 putch MACRO char_ch    
     MOV AH,02h    
     MOV DL,char_ch
-    ADD DL,30h;toAscii
     INT 21h   
 ENDM
 getchar MACRO 
@@ -43,6 +42,21 @@ pause MACRO
     MOV AH,08h;entrada char sin echo
     INT 21h  
 ENDM    
+exit MACRO
+    MOV AH,4Ch
+    INT 21h 
+ENDM
+
+kbhit MACRO
+    MOV AH, 01h 
+    INT 16h
+ENDM
+
+getch MACRO ;return en AL
+    MOV AH,00h
+    INT 16h
+ENDM
+
 drawPixel MACRO int8_color int8_pagina int16_x int16_y  ;Video mode 13h
     ;servicio 0Ch de la int 10h
     MOV AH,0Ch  ;
@@ -92,6 +106,8 @@ drawBlocks MACRO int8_pagina int8_num
     MOV CX,int8_num;number time write
     INT 10h    
 ENDM
+
+
 abs MACRO ;input AX, return AX
     ;(a XOR b ) - b ,
     ; b = BX = X >> sizeof(int) ; 16 bits es 15, 0 a 15 = 16
@@ -122,6 +138,7 @@ min MACRO int16_x int16_y ;return AX
     ADD AX,int16_y
     ;return on AX
 ENDM
+;max y min inspirados en: https://www.geeksforgeeks.org/compute-the-minimum-or-maximum-max-of-two-integers-without-branching/
 porDiez MACRO; entrada y ret on BX
     ;n<<3 + n<<1 = n*8 + n*2 = n*10  (ingenio propio :p)
     MOV DX,BX
@@ -132,37 +149,3 @@ ENDM
 swap MACRO; AX con BX
     XCHG AX,BX
 ENDM     
-;max y min inspirados en: https://www.geeksforgeeks.org/compute-the-minimum-or-maximum-max-of-two-integers-without-branching/
-
-.model small
-
-;Segmento de pila
-.stack
-
-;Segmento de datos
-.data
-
-buff_input DB 10,?,10 DUP(?)
-int16_var1 DW 0
-int8_var2 DB 0
-str_string1 DB "hola mundo",'$'
-
-;Segmento de codigo
-.code    
-
-MOV AX,@DATA
-MOV DS,AX
-
-inicio PROC
-
-gets buff_input
-puts buff_input
-    
-    MOV AH,4Ch
-    INT 21h  
-inicio ENDP
-
-
-
-          
-END;.code   
