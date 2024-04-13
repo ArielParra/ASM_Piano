@@ -1,4 +1,3 @@
-;Ariel Emilio Parra Martinez ISC 4A ID:280862
 endl MACRO
     MOV AH, 02h
     MOV DL, 13 ;\r
@@ -57,13 +56,15 @@ getch MACRO ;return en AL
     INT 16h
 ENDM
 
-drawPixel MACRO int8_color int8_pagina int16_x int16_y  ;Video mode 13h
+drawPixel MACRO 
+;int8_color int8_pagina int16_x int16_y
+;Video mode 13h
     ;servicio 0Ch de la int 10h
     MOV AH,0Ch  ;
-    MOV AL,int8_color; mover AL el color
-    MOV BH,int8_pagina   ; BH pagina
-    MOV CX,int16_x  ; columnas
-    MOV DX,int16_y  ; filas
+    ;MOV AL,int8_color; mover AL el color
+    ;MOV BH,int8_pagina   ; BH pagina
+    ;MOV CX,int16_x  ; columnas
+    ;MOV DX,int16_y  ; filas
     INT 10h
 ENDM   
 setVideo MACRO int8_modo
@@ -79,6 +80,7 @@ setPag MACRO int8_pag
     INT 10h
 ENDM
 setBG MACRO
+;args BH = color (BG,FG)
     MOV AH,07h
     MOV AL,0h  ;lines to scroll  (00h = clear)
     MOV BH,24h ;attribute 
@@ -87,28 +89,29 @@ setBG MACRO
     MOV DH,24  ;row lower right corner ;25 caracteres
     MOV DL,79  ;col lower right corner ;80 caracteres
     INT 10h       
-ENDM    
-gotoxy MACRO int8_x int8_y
-    MOV DL,int8_x
-    MOV DH,int8_y
+ENDM 
+gotoxy MACRO
+;args DL=x,DH=y
     MOV AH,02h
     INT 10h 
 ENDM 
-drawBlocks MACRO int8_pagina int8_num
+drawBlocks MACRO
+;args
+;BH = pagina
+;CX = veces a escribir
     MOV DL,01h;foreground
     MOV DH,01h;background
     MOV AH,09h
-    MOV AL,219; caracter 
-    MOV BH,int8_pagina; pag
+    MOV AL,219;caracter 
     MOV BL,DH
     SHL BL,4
     OR  BL,DL;rango  color
-    MOV CX,int8_num;number time write
     INT 10h    
 ENDM
 
-
-abs MACRO ;input AX, return AX
+absolut MACRO
+;args AX
+;return AX
     ;(a XOR b ) - b ,
     ; b = BX = X >> sizeof(int) ; 16 bits es 15, 0 a 15 = 16
     ; a = AX 
@@ -118,34 +121,39 @@ abs MACRO ;input AX, return AX
     SUB AX,BX
 ;inspirado de https://stackoverflow.com/questions/2639173/x86-assembly-abs-implementation
 ENDM 
-max MACRO int16_x int16_y ;return AX
+max MACRO
+;args AX,BX
+;return AX
     ;x - ( (x - y) & ((x - y) >> sizeof(int)) )
-    MOV BX,int16_x
-    SUB BX,int16_y;BX = (x - y)  
-    MOV AX,BX
-    SAR AX,15;AX = (x - y) >> 15
-    AND BX,AX
-    MOV AX,int16_x; x -  ((x - y) & ((x - y) >> 15
+    MOV DX,AX
+    SUB DX,BX;DX = (x - y)
+    MOV BX,DX
+    SAR BX,15;BX = (x - y) >> 15
+    AND DX,BX
+    ; x -  ((x - y) & ((x - y) >> 15
     SUB AX,BX
 ENDM
-min MACRO int16_x int16_y ;return AX                    
+min MACRO
+;args AX,BX
+;return AX
     ; ( (x - y) & ( (x - y) >> sizeof(int)) ) + y 
-    MOV AX,int16_x
-    SUB AX,int16_y;AX = (x - y)  
-    MOV BX,AX
-    SAR BX,15;BX = (x - y) >> 15
-    AND AX,BX
-    ADD AX,int16_y
-    ;return on AX
+    SUB AX,BX;AX = (x - y)  
+    MOV DX,AX
+    SAR DX,15;Dx = (x - y) >> 15
+    AND AX,DX
+    ADD AX,BX
 ENDM
 ;max y min inspirados en: https://www.geeksforgeeks.org/compute-the-minimum-or-maximum-max-of-two-integers-without-branching/
-porDiez MACRO; entrada y ret on BX
+porDiez MACRO
+;args AX
+;return AX
     ;n<<3 + n<<1 = n*8 + n*2 = n*10  (ingenio propio :p)
-    MOV DX,BX
-    SHL BX,3
+    MOV DX,AX
+    SHL AX,3
     SHL DX,1
-    ADD BX,DX
+    ADD AX,DX
 ENDM
-swap MACRO; AX con BX
+swap MACRO
+;args AX,BX
     XCHG AX,BX
 ENDM     

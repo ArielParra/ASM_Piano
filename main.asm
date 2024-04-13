@@ -3,7 +3,7 @@
 .stack 100h
 
 .data
-include "mac.inc"
+include mac.inc
 
 buff_input DB 10,?,10 DUP(?)
 int16_var1 DW 0
