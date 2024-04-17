@@ -1,2 +1,6 @@
 Interrupciones utiles usadas en el proyecto
 
+https://www.cs.binghamton.edu/~reckert/220/8254_timer.html
+http://www.techhelpmanual.com/221-int_15h_86h__wait.html
+https://web.archive.org/web/20160307223121/http://muruganad.com/8086/8086-assembly-language-program-to-play-sound-using-pc-speaker.html
+https://www.cs.virginia.edu/~evans/cs216/guides/x86.html
