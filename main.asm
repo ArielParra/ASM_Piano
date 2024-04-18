@@ -1,9 +1,20 @@
 
-usleep MACRO 
-         
-         MOV DX, word ptr [microseconds]     ; baja
-         MOV CX, word ptr [microseconds + 2] ; alta
- 
+sleep MACRO int16_miliseconds
+         MOV AX,int16_miliseconds
+         MOV BX,10
+         XOR DX,DX
+         DIV BX
+         porDiez;DX*10
+         MOV CX,DX
+         XOR DX,DX
+         DIV BX
+         ADD CX,DX        
+         XOR DX,DX
+         XCHG DX,CX 
+         porDiez;
+         porDiez;
+         porDiez;DX*1000
+         XCHG AX,CX 
          XOR   AL,AL
          MOV   AH, 86H
          INT   15H
@@ -16,13 +27,11 @@ ENDM
 include mac.inc
 
 buff_input DB 10,?,10 DUP(?)
-int16_var1 DW 0
+int16_aux DW 0
 int8_var2 DB 0
 str_string1 DB "hola mundo",'$';
 str_string2 DB "preciona a",'$';
-microseconds DD 500000;500ms
-;TODO binary vec
-;TODO binary to hex
+
 
 ; Define frequencies
 C       equ 4560    ; Middle C
@@ -35,9 +44,6 @@ D       equ 8126    ; D
 ; Define durations
 Medium  equ 20
 Long    equ 30
-
-.stack 100h
-
 
 .code
 MOV AX,@DATA
@@ -69,20 +75,21 @@ main PROC
         putch  'C'
         mov     ax, C
         mov     bx, Medium
-        call    Beep
+        ;call    Beep
         
-        usleep 
+     
+        sleep 555
         putch  'C'
         mov     ax, C
         mov     bx, Medium
-        call    Beep
-        usleep 
+        ;call    Beep
+        sleep 255
             putch  'C'
         mov     ax, C
         mov     bx, Medium
-        call    Beep
+        ;call    Beep
+        
 
- 
 exit
 main ENDP
 
@@ -101,17 +108,13 @@ Beep PROC
     out     42h, al
 
     in      al, 61h         ; Turn on note
-    or      al, 00000011b   ; Set bits 1 and 0
+    OR      al,00000011b   ; Set bits 1 and 0
     out     61h, al
 
     ;mov     cx, duration    ; Load duration
     POP CX
-.delay:
-    mov     dx, 65535       ; Set up inner loop counter
-.inner_delay:
-    dec     dx              ; Decrement inner loop counter
-    jne     .inner_delay    ; Loop until zero
-    loop    .delay          ; Loop until duration is zero
+    mov int16_aux,CX
+    sleep int16_aux      ; Loop until duration is zero
 
     in      al, 61h         ; Turn off note
     and     al, 11111100b   ; Reset bits 1 and 0
@@ -121,4 +124,3 @@ Beep ENDP
 
 
 END;code segment
-

@@ -1,8 +1,8 @@
 endl MACRO
-    MOV AH, 02h
-    MOV DL, 13 ;\r
+    MOV AH,02h
+    MOV DL,13 
     INT 21h
-    MOV DL, 10 ;\n
+    MOV DL, 10 
     INT 21h
 ENDM 
 print MACRO str_msg
@@ -22,7 +22,7 @@ getchar MACRO
     INT 21h
 ENDM 
 gets MACRO buff_str 
-;          TamMax,longUsada,esa longUsada DUPlicalos con el valor '?' (vacio)                         
+;          TamMax,longUsada,esa longUsada DUPlicalos con el valor '?' 
 ;buffer DB 255   ,    ?    ,255 DUP(?); reserva un buffer de 255 chars
     MOV AH,0Ah      
     MOV DX,OFFSET buff_str
@@ -119,7 +119,6 @@ absolut MACRO
     SAR BX,15;shift aritmetico pq se manejan signos
     XOR AX,BX
     SUB AX,BX
-;inspirado de https://stackoverflow.com/questions/2639173/x86-assembly-abs-implementation
 ENDM 
 max MACRO
 ;args AX,BX
@@ -143,17 +142,14 @@ min MACRO
     AND AX,DX
     ADD AX,BX
 ENDM
-;max y min inspirados en: https://www.geeksforgeeks.org/compute-the-minimum-or-maximum-max-of-two-integers-without-branching/
+;max y min inspirados en:
 porDiez MACRO
-;args AX
-;return AX
+;args DX
+;return DX
     ;n<<3 + n<<1 = n*8 + n*2 = n*10  (ingenio propio :p)
-    MOV DX,AX
-    SHL AX,3
-    SHL DX,1
-    ADD AX,DX
+    MOV CX,DX
+    SHL DX,3
+    SHL CX,1
+    ADD DX,CX
 ENDM
-swap MACRO
-;args AX,BX
-    XCHG AX,BX
-ENDM     
+
