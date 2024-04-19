@@ -147,9 +147,59 @@ porDiez MACRO
 ;args DX
 ;return DX
     ;n<<3 + n<<1 = n*8 + n*2 = n*10  (ingenio propio :p)
-    MOV CX,DX
-    SHL DX,3
-    SHL CX,1
-    ADD DX,CX
+    PUSH AX
+    PUSH CX
+    MOV CL,03h
+    MOV AX,DX
+    SHL DX,CL
+    SHL AX,1
+    ADD DX,AX
+    POP CX
+    POP AX
+ENDM
+
+sleep MACRO int16_miliseconds
+         XOR CX,CX
+         MOV AX,int16_miliseconds
+         MOV BX,10
+         
+         XOR DX,DX
+         DIV BX
+         
+         porDiez;DX*10
+         MOV CX,DX
+         
+         XOR DX,DX
+         DIV BX
+         
+         ADD CX,DX
+                 
+         MOV DX,CX 
+         porDiez;
+         porDiez;
+         porDiez;DX*1000
+         MOV CX,AX 
+         XOR   AL,AL
+         MOV   AH, 86H
+         INT   15H
+ENDM
+
+beep MACRO int16_frequency, int16_duration
+    mov     al, 182         ; Prepare the speaker
+    out     43h, al
+    mov     ax, int16_frequency   ; Load frequency number
+    out     42h, al         ; Output low byte
+    mov     al, ah          ; Output high byte
+    out     42h, al
+
+    in      al, 61h         ; Turn on note
+    OR      al,00000011b   ; Set bits 1 and 0
+    out     61h, al
+
+    sleep int16_duration 
+
+    in      al, 61h         ; Turn off note
+    and     al, 11111100b   ; Reset bits 1 and 0
+    out     61h, al
 ENDM
 
