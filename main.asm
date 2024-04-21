@@ -9,15 +9,14 @@ include mac.inc
 buff_input DB 10,?,10 DUP(?)
 int16_aux DW 0
 int8_var2 DB 0
-str_string1 DB "hola mundo",'$';
-str_string2 DB "preciona 1,2,3",'$';
+str_string1 DB "presiona numeros y letras para sonido y esc para salir",'$';
 int16_sostenido DW 800 ;ms
 ;constantes
 
-jump_table DW a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y,z,default;
+jumpTable_numbers DW c_0,c_1,c_2,c_3,c_4,c_5,c_6,c_7,c_8,c_9,case_default;
+jumpTable_letters DW a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y,z,default
 
-
-; notas
+;notas
 note_C       equ 9121    ; C   - 130.81 Hz
 note_Csharp  equ 8609    ; C#  - 138.59 Hz
 note_D       equ 8126    ; D   - 146.83 Hz
@@ -30,7 +29,7 @@ note_Gsharp  equ 5746    ; G#  - 207.65 Hz
 note_A       equ 5423    ; A   - 220.00 Hz
 note_Asharp  equ 5119    ; A#  - 233.08 Hz
 note_B       equ 4831    ; B   - 246.94 Hz
-note_middleC equ 4560    ; Middle C - 261.63 Hz
+note_middleC equ 4560    ; C   - 261.63 Hz
 note_Csharp2 equ 4304    ; C#  - 277.18 Hz
 note_D2      equ 4063    ; D   - 293.66 Hz
 note_Dsharp2 equ 3834    ; D#  - 311.13 Hz
@@ -68,7 +67,7 @@ main PROC
    ;puts buff_input
    ;print str_string1
    ;endl
-   print str_string2
+   print str_string1
    endl
 
    while1:
@@ -78,178 +77,262 @@ main PROC
           
          getch
          XOR AH, AH
-         SUB AL, 'a'
-         ;DEC AX
+
+         CMP AL,1Bh;'esc' 
+         JNE et_continue
+         exit
+
+         et_continue:
+
+         CMP AL, '9'
+         JG et_validarLetras
+
+         et_validarNumeros:
+               SUB AL, '0'
+               CMP AX,10
+               JL et_numerosValidados
+               MOV AX,10;default
+
+               et_numerosValidados:
+                  SHL AX,1
+                  LEA BX,jumpTable_numbers
+                  ADD BX,AX;indice ya validado
+                  JMP [BX]
+               
+         et_validarLetras:
+               SUB AL, 'a'         
+               ;validar rango
+               CMP AX,26; 'z' - 'a'
+               JL et_letrasValidadas
+               MOV AX,26;default
          
+              et_letrasValidadas:
+                  SHL AX,1
+                  LEA BX,jumpTable_Letters
+                  ADD BX,AX
+                  JMP [BX]
          
-         ;validar rango
-         CMP AX,26; 'z' - 'a'
-         JL et_validado
-         MOV AX,26;default
-         
-         et_validado:
-         SHL AX,1
-         LEA BX,jump_table
-         ADD BX,AX;indice ya validado
-         JMP [BX]
-         
-         switch_case:
-               a:
+         switch_numbers:
+               c_1:
                    putch 'C'
-                   putch '-'
-                   beep note_middleC,int16_sostenido
+                   beep note_C,int16_sostenido
                    JMP break
                
-               b:
+               c_2:
                    putch 'D'
                    beep note_D, int16_sostenido
                    JMP break
                
-               c:
+               c_3:
                    putch 'E'
                    beep note_E, int16_sostenido
                    JMP break
                
-               d:
+               c_4:
                    putch 'F'
                    beep note_F, int16_sostenido
                    JMP break
                
-               e:
+               c_5:
                    putch 'G'
                    beep note_G, int16_sostenido
                    JMP break
                
-               f:
+               c_6:
                    putch 'A'
                    beep note_A, int16_sostenido
                    JMP break
                
-               g:
-                   putch 'B'
+               c_7:
+                  putch 'B'
                    beep note_B, int16_sostenido
                    JMP break
                
-               h:
+               c_8:
+                   putch 'C'
+                   putch '2'
+                   beep note_C2, int16_sostenido
+                   JMP break
+               
+               c_9:
+                   putch 'D'
+                   putch '2'
+                   beep note_D2, int16_sostenido
+                   JMP break
+               
+               c_0:
+                   putch 'E'
+                   putch '2'
+                   beep note_E2, int16_sostenido
+                   JMP break
+               case_default:
+                     putch '.'
+               JMP break 
+
+         switch_letters:
+               q:
+                   putch 'F'
+                   putch '2'
+                   beep note_F2,int16_sostenido
+                   JMP break
+               
+               w:
+                   putch 'G'
+                   putch '2'
+                   beep note_G2, int16_sostenido
+                   JMP break
+               
+               e:
+                   putch 'A'
+                   putch '2'
+                   beep note_A2, int16_sostenido
+                   JMP break
+               
+               r:
+                   putch 'B'
+                   putch '2'
+                   beep note_B2, int16_sostenido
+                   JMP break
+               
+               t:
+                   putch 'C'
+                   putch '3'  
+                   beep note_C3, int16_sostenido
+                   JMP break
+               
+               y:
+                   putch 'D'
+                   putch '3'  
+                   beep note_D3, int16_sostenido
+                   JMP break
+               
+               u:
+                   putch 'E'
+                   putch '3'  
+                   beep note_E3, int16_sostenido
+                   JMP break
+               
+               i:
+                   putch 'F'
+                   putch '3'
+                   beep note_F3, int16_sostenido
+                   JMP break
+               
+               o:
+                   putch 'G'
+                   putch '3'
+                   beep note_G3, int16_sostenido
+                   JMP break
+               
+               p:
+                   putch 'A'
+                   putch '3'
+                   beep note_A3, int16_sostenido
+                   JMP break
+               
+               a:
+                   putch 'B'
+                   putch '3'
+                   beep note_B3, int16_sostenido
+                   JMP break
+               
+               s:
                    putch 'C'
                    putch '#'
                    beep note_Csharp, int16_sostenido
                    JMP break
                
-               i:
+               d:
                    putch 'D'
                    putch '#'
                    beep note_Dsharp, int16_sostenido
                    JMP break
                
-               j:
+               f:
+                   putch 'E'
+                   putch '2'
+                   beep note_E2, int16_sostenido
+                   JMP break
+               
+               g:
                    putch 'F'
                    putch '#'
                    beep note_Fsharp, int16_sostenido
                    JMP break
                
-               k:
+               h:
                    putch 'G'
                    putch '#'
                    beep note_Gsharp, int16_sostenido
                    JMP break
-               
-               l:
+               j:
                    putch 'A'
                    putch '#'
                    beep note_Asharp, int16_sostenido
                    JMP break
                
-               m:
+               k:
+                   putch 'B'
+                   putch '2'
+                   beep note_B2, int16_sostenido
+                   JMP break
+               
+               l:
                    putch 'C'
                    putch '#'
                    putch '2'
                    beep note_Csharp2, int16_sostenido
                    JMP break
                
-               n:
-                   putch 'D'
-                   putch '2'
-                   beep note_D2, int16_sostenido
-                   JMP break
-               
-               o:
+               z:
                    putch 'D'
                    putch '#'
                    putch '2'
                    beep note_Dsharp2, int16_sostenido
                    JMP break
                
-               p:
-                   putch 'F'
-                   putch '2'
-                   beep note_F2, int16_sostenido
+               x:
+                   putch 'E'
+                   putch '3'
+                   beep note_E3, int16_sostenido
                    JMP break
                
-               q:
-                   JMP eliwh1;salir
+               c:
+                   putch 'F'
+                   putch '#'
+                   putch '2'
+                   beep note_Fsharp2, int16_sostenido
+                   JMP break
                
-               r:
+               v:
                    putch 'G'
                    putch '#'
                    putch '2'
                    beep note_Gsharp2, int16_sostenido
                    JMP break
                
-               s:
-                   putch 'A'
-                   putch '2'
-                   beep note_A2, int16_sostenido
-                   JMP break
-               
-               t:
+               b:
                    putch 'A'
                    putch '#'
                    putch '2'
                    beep note_Asharp2, int16_sostenido
                    JMP break
                
-               u:
+               n:
+                   putch 'B'
+                   putch '3'
+                   beep note_B3, int16_sostenido
+                   JMP break
+               m:
                    putch 'C'
-                   putch '2'
-                   beep note_C2, int16_sostenido
-                   JMP break
-               
-               v:
-                   putch 'D'
-                   putch '3'
-                   beep note_D3, int16_sostenido
-                   JMP break
-               
-               w:
-                   putch 'D'
                    putch '#'
                    putch '3'
-                   beep note_Dsharp3, int16_sostenido
-                   JMP break
-               
-               x:
-                   putch 'F'
-                   putch '3'
-                   beep note_F3, int16_sostenido
-                   JMP break
-               
-               y:
-                   putch 'G'
-                   putch '3'
-                   beep note_G3, int16_sostenido
-                   JMP break
-               
-               z:
-                   putch 'G'
-                   putch '#'
-                   putch '3'
-                   beep note_Gsharp3, int16_sostenido
+                   beep note_Csharp3, int16_sostenido
                    JMP break
                
                default:
                    putch '.'
-                   JMP break
+
          break:
          putch ' ';
          
