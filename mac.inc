@@ -202,4 +202,3 @@ beep MACRO int16_frequency, int16_duration
     and     al, 11111100b   ; Reset bits 1 and 0
     out     61h, al
 ENDM
-

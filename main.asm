@@ -4,6 +4,8 @@
 
 .data
 include mac.inc
+include song.inc
+
 
 ;variables
 buff_input DB 10,?,10 DUP(?)
@@ -82,6 +84,7 @@ main PROC
     JMP while1   
     eliwh1:
 
+    song_2
 
 exit
 main ENDP
@@ -89,7 +92,7 @@ main ENDP
 piano PROC
          CMP AL,1Bh;'esc' 
          JNE et_continue
-         exit
+         JMP eliwh1
 
          et_continue:
 
@@ -254,6 +257,5 @@ piano PROC
          
 RET
 piano ENDP
-
 
 END;code segment
