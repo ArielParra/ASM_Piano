@@ -43,19 +43,6 @@ note_Gsharp4  equ 2873; Sol sostenido
 note_A4       equ 2711; La
 note_Asharp4  equ 2559; La sostenido
 note_B4       equ 2415; Si
-note_C5       equ 2280; Do
-note_Csharp5  equ 2152; Do sostenido
-note_D5       equ 2031; Re
-note_Dsharp5  equ 1917; Re sostenido
-note_E5       equ 1809; Mi
-note_F5       equ 1715; Fa
-note_Fsharp5  equ 1612; Fa sostenido
-note_G5       equ 1521; Sol
-note_Gsharp5  equ 1436; Sol sostenido
-note_A5       equ 1355; La
-note_Asharp5  equ 1292; La sostenido
-note_B5       equ 1207; Si
-note_C6       equ 1140; Do
 
 .code
 MOV AX,@DATA
@@ -63,23 +50,19 @@ MOV DS,AX
 
 main PROC
 
-   ;gets buff_input
-   ;endl
-   ;puts buff_input
-   ;print str_string1
-   ;endl
+
    print str_string1
    endl
 
-   while1:
+    while1:
         
-         kbhit 
-         JZ while1
+        kbhit 
+        JZ while1
           
-         getch
-         XOR AH, AH
+        getch
+        XOR AH, AH
         
-         CALL piano;se "manda" el AL del getch
+        CALL piano;se "manda" el AL del getch
         
     JMP while1   
     eliwh1:
