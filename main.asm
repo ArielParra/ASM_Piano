@@ -57,6 +57,7 @@ note_Asharp5  equ 1279; La sostenido
 note_B5       equ 1207; Si
 note_C6       equ 1140; Do
 
+
 .code
 MOV AX,@DATA
 MOV DS,AX
@@ -80,7 +81,7 @@ main PROC
     JMP while1   
     eliwh1:
 
-    song_2
+    song_4
 
 exit
 main ENDP
