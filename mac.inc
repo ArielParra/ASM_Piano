@@ -185,20 +185,17 @@ sleep MACRO int16_miliseconds
 ENDM
 
 beep MACRO int16_frequency, int16_duration
-    mov     al, 182         ; Prepare the speaker
-    out     43h, al
-    mov     ax, int16_frequency   ; Load frequency number
-    out     42h, al         ; Output low byte
-    mov     al, ah          ; Output high byte
-    out     42h, al
-
-    in      al, 61h         ; Turn on note
-    OR      al,00000011b   ; Set bits 1 and 0
-    out     61h, al
-
+    MOV     AL, 182         ; Prepare the speaker
+    OUT     43h, AL
+    MOV     AX, int16_frequency   ; Load frequency number
+    OUT     42h, AL         ; Output low byte
+    MOV     AL, AH          ; Output high byte
+    OUT     42h, AL
+    IN      AL, 61h         ; Turn on note
+    OR      AL,00000011b   ; Set bits 1 and 0
+    OUT     61h, AL
     sleep int16_duration 
-
-    in      al, 61h         ; Turn off note
-    and     al, 11111100b   ; Reset bits 1 and 0
-    out     61h, al
+    IN      AL, 61h         ; Turn off note
+    AND     AL, 11111100b   ; Reset bits 1 and 0
+    OUT     61h, AL
 ENDM
