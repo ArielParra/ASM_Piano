@@ -1,6 +1,5 @@
 song_1 MACRO 
 ;mario bros
-
     beep note_E4,100 
     sleep 100 
     beep note_E4,100 
@@ -15,7 +14,6 @@ song_1 MACRO
     sleep 700 
     beep note_G3,100 
     sleep 700 
-
     beep note_C4,300 
     sleep 300 
     beep note_G3,300 
@@ -29,7 +27,6 @@ song_1 MACRO
     beep note_Asharp3,200 
     beep note_A3,100 
     sleep 300 
-
     beep note_G3,100 
     sleep 150 
     beep note_E4,100 
@@ -50,7 +47,6 @@ song_1 MACRO
     sleep 100 
     beep note_B3,100 
     sleep 500 
-
     beep note_C4,300 
     sleep 300 
     beep note_G3,300 
@@ -64,8 +60,6 @@ song_1 MACRO
     beep note_Asharp3,200 
     beep note_A3,100 
     sleep 300 
-
-
     beep note_G3,100 
     sleep 150 
     beep note_E4,100 
@@ -86,8 +80,6 @@ song_1 MACRO
     sleep 100 
     beep note_B3,100 
     sleep 900 
-
-    
     beep note_G4,100 
     sleep 100 
     beep note_Fsharp4,100 
@@ -98,7 +90,6 @@ song_1 MACRO
     sleep 300 
     beep note_E4,100 
     sleep 300 
-
     beep note_Gsharp3,100 
     sleep 100 
     beep note_A3,100 
@@ -111,7 +102,6 @@ song_1 MACRO
     sleep 100 
     beep note_D4,100 
     sleep 500 
-
     beep note_G4,100 
     sleep 100 
     beep note_Fsharp4,100 
@@ -122,14 +112,12 @@ song_1 MACRO
     sleep 300 
     beep note_E4,100 
     sleep 300 
-
     beep note_C5,100 
     sleep 300 
     beep note_C5,100 
     sleep 100 
     beep note_C5,100 
     sleep 1100 
-
     beep note_G4,100 
     sleep 100 
     beep note_Fsharp4,100 
@@ -140,7 +128,6 @@ song_1 MACRO
     sleep 300 
     beep note_E4,100 
     sleep 300 
-
     beep note_Gsharp3,100 
     sleep 100 
     beep note_A3,100 
@@ -153,22 +140,18 @@ song_1 MACRO
     sleep 100 
     beep note_D4,100 
     sleep 500 
-
-
     beep note_Dsharp4,300 
     sleep 300 
     beep note_D4,300 
     sleep 300 
     beep note_C4,300 
     sleep 1300 
-
     beep note_C4,100 
     sleep 100 
     beep note_C4,100 
     sleep 300 
     beep note_C4,100 
     sleep 300 
-
     beep note_C4,100 
     sleep 100 
     beep note_D4,100 
@@ -181,115 +164,6 @@ song_1 MACRO
     sleep 50 
     beep note_G3,100 
     sleep 700 
-
-    beep note_C4,100 
-    sleep 100 
-    beep note_C4,100 
-    sleep 300 
-    beep note_C4,100 
-    sleep 300 
-
-    beep note_C4,100 
-    sleep 100 
-    beep note_D4,100 
-    sleep 100 
-    beep note_E4,100 
-    sleep 700 
-    beep note_A4,100 
-    sleep 300 
-    beep note_G4,100 
-    sleep 500 
-
-    beep note_C4,100 
-    sleep 100 
-    beep note_C4,100 
-    sleep 300 
-    beep note_C4,100 
-    sleep 300 
-
-    beep note_C4,100 
-    sleep 100 
-    beep note_D4,100 
-    sleep 300 
-    beep note_E4,200 
-    sleep 50 
-
-    beep note_C4,200 
-    sleep 50 
-    beep note_A3,200 
-    sleep 50 
-    beep note_G3,100 
-    sleep 700 
-
-    beep note_E4,100 
-    sleep 100 
-    beep note_E4,100 
-    sleep 300 
-    beep note_E4,100 
-    sleep 300 
-    beep note_C4,100 
-    sleep 100 
-    beep note_E4,100 
-    sleep 300 
-    beep note_G4,100 
-    sleep 700 
-    beep note_G3,100 
-    sleep 700 
-    beep note_G3,100 
-    sleep 125 
-    beep note_C4,100 
-    sleep 125 
-    beep note_E4,100 
-    sleep 125 
-    beep note_G4,100 
-    sleep 125 
-    beep note_C5,100 
-    sleep 125 
-    
-    beep note_Dsharp5,100 
-    sleep 125 
-    beep note_G5,100 
-    sleep 575 
-    beep note_Dsharp5,100 
-    sleep 575 
-    beep note_Gsharp3,100 
-    sleep 125 
-    beep note_C4,100 
-    sleep 125 
-    beep note_Dsharp4,100 
-    sleep 125 
-    beep note_Gsharp4,100 
-    sleep 125 
-    beep note_C5,100 
-    sleep 125 
-    beep note_Dsharp5,100 
-    sleep 125 
-    beep note_Gsharp5,100 
-    sleep 575 
-    beep note_Dsharp5,100 
-    sleep 575 
-    beep note_Asharp3,100 
-    sleep 125 
-    beep note_D4,100 
-    sleep 125 
-    beep note_F4,100 
-    sleep 125 
-    beep note_Asharp4,100 
-    sleep 125 
-    beep note_D5,100 
-    sleep 125 
-    beep note_F5,100 
-    sleep 125 
-    beep note_Asharp5,100 
-    sleep 575 
-    beep note_Asharp5,100 
-    sleep 125 
-    beep note_Asharp5,100 
-    sleep 125 
-    beep note_Asharp5,100 
-    sleep 125 
-    beep note_C6,675 
-
 ENDM
 
 song_2 MACRO
@@ -347,87 +221,6 @@ song_2 MACRO
 
     beep note_D4, 2000 
 
-    beep note_D4, 375 
-    beep note_C4, 375 
-    beep note_E4, 750 
-    beep note_C4, 750 
-    beep note_F4, 375 
-    beep note_G4, 375 
-
-    beep note_D4, 2000 
-
-    beep note_A4, 375 
-    beep note_C5, 375 
-    beep note_B4, 750 
-    beep note_C5, 750 
-    beep note_A4, 750 
-
-    beep note_C5, 750 
-    beep note_G4, 750 
-    beep note_A4, 750 
-    beep note_D4, 375 
-    beep note_C4, 375 
-
-
-    beep note_E4, 750 
-    beep note_D4, 2250 
-
-    beep note_F4, 375 
-    beep note_G4, 375 
-    beep note_F4, 750 
-    beep note_G4, 750 
-    beep note_E4, 375     
-    beep note_C4, 375 
-
-    beep note_F4, 375 
-    beep note_E4, 375 
-    beep note_D4, 2250 
-
-
-    beep note_D4, 375 
-    beep note_C4, 375 
-    beep note_E4, 750 
-    beep note_C4, 750 
-    beep note_E4, 375 
-    beep note_F4, 375 
-
-    beep note_D4, 2000 
-
-    beep note_D4, 375 
-    beep note_C4, 375 
-    beep note_E4, 750 
-    beep note_C4, 750 
-    beep note_F4, 375 
-    beep note_G4, 375 
-
-    beep note_D4, 2000 
-
-    beep note_A4, 375 
-    beep note_C5, 375 
-    beep note_B4, 750 
-    beep note_C5, 750 
-    beep note_A4, 750 
-
-    beep note_C5, 750 
-    beep note_G4, 750 
-    beep note_A4, 750 
-    beep note_D4, 375 
-    beep note_C4, 375 
-
-
-    beep note_E4, 750 
-    beep note_D4, 2250 
-
-    beep note_F4, 375 
-    beep note_G4, 375 
-    beep note_F4, 750 
-    beep note_G4, 750 
-    beep note_E4, 375     
-    beep note_C4, 375 
-
-    beep note_F4, 375 
-    beep note_E4, 375 
-    beep note_D4, 2250 
 ENDM
 
 song_3 MACRO 
@@ -534,24 +327,6 @@ song_3 MACRO
     beep note_E4, 350
     sleep 50
     beep note_Dsharp4, 350
-    sleep 50
-    beep note_E4, 350
-    sleep 50
-    beep note_B3, 350
-    sleep 50
-    beep note_D4, 350
-    sleep 50
-    beep note_C4, 350
-    sleep 50
-    beep note_A3, 900
-    sleep 750
-    beep note_D3, 350
-    sleep 50
-    beep note_F3, 350
-    sleep 50
-    beep note_A3, 350
-    sleep 50
-    beep note_B3, 900
 ENDM
 
 song_4 MACRO
@@ -561,94 +336,94 @@ song_4 MACRO
     sleep 10 
     beep note_Csharp5,709 
     sleep 788 
-    sleep 5 
+
     beep note_B4,273 
     sleep 304 
-    sleep 5 
+
     beep note_Fsharp4,273 
     sleep 304 
-    sleep 5 
+
     beep note_Fsharp4,134 
     sleep 149 
-    sleep 5 
+
     beep note_Fsharp4,134 
     sleep 149 
-    sleep 5 
+
     beep note_Fsharp4,134 
     sleep 149 
-    sleep 5 
+
     beep note_Fsharp4,134 
     sleep 149 
-    sleep 5 
+
     beep note_Fsharp4,134 
     sleep 149 
-    sleep 5 
+
     beep note_B4,134 
     sleep 149 
-    sleep 5 
+
     beep note_B4,134 
     sleep 149 
-    sleep 5 
+
     beep note_B4,134 
     sleep 149 
-    sleep 5 
+
     beep note_B4,273 
     sleep 304 
-    sleep 5 
+
     beep note_A4,134 
     sleep 149 
-    sleep 5 
+
     beep note_B4,273 
     sleep 304 
-    sleep 5 
+
     beep note_G4,412 
     sleep 458 
-    sleep 5 
+
     beep note_G4,134 
     sleep 149 
-    sleep 5 
+
     beep note_G4,134 
     sleep 149 
-    sleep 5 
+
     beep note_G4,134 
     sleep 149 
-    sleep 5 
+
     beep note_G4,134 
     sleep 149 
-    sleep 5 
+
     beep note_G4,134 
     sleep 149 
-    sleep 5 
+
     beep note_B4,134 
     sleep 149 
-    sleep 5 
+
     beep note_B4,134 
     sleep 149 
-    sleep 5 
+
     beep note_B4,134 
     sleep 149 
-    sleep 5 
+
     beep note_B4,273 
     sleep 304 
-    sleep 5 
+
     beep note_Csharp5,134 
     sleep 149 
-    sleep 5 
+
     beep note_D5,273 
     sleep 304 
-    sleep 5 
+
     beep note_A4,412 
     sleep 458 
-    sleep 5 
+
     beep note_A4,134 
     sleep 149 
-    sleep 5 
+
     beep note_A4,134 
     sleep 149 
-    sleep 5 
+
     beep note_A4,134 
     sleep 149 
-    sleep 5 
+
     beep note_A4,417 
     sleep 46 
     sleep 36 
@@ -657,13 +432,13 @@ song_4 MACRO
     sleep 30 
     beep note_A4,134 
     sleep 149 
-    sleep 5 
+
     beep note_D5,134 
     sleep 149 
-    sleep 5 
+
     beep note_D5,134 
     sleep 149 
-    sleep 5 
+
     beep note_D5,46 
     sleep 51 
     sleep 30 
@@ -672,164 +447,82 @@ song_4 MACRO
     sleep 20 
     beep note_D5,273 
     sleep 304 
-    sleep 5 
+
     beep note_E5,134 
     sleep 149 
-    sleep 5 
+
     beep note_E5,273 
     sleep 304 
-    sleep 5 
+
     beep note_Csharp5,691 
     sleep 767 
     sleep 314 
     beep note_D5,552 
     sleep 613 
-    sleep 5 
+
     beep note_Csharp5,552 
     sleep 613 
-    sleep 5 
+
     beep note_B4,273 
     sleep 304 
-    sleep 5 
+
     beep note_Fsharp4,273 
     sleep 304 
-    sleep 5 
+
     beep note_Fsharp4,134 
     sleep 149 
-    sleep 5 
+
     beep note_Fsharp4,134 
     sleep 149 
-    sleep 5 
+
     beep note_Fsharp4,134 
     sleep 149 
-    sleep 5 
+
     beep note_Fsharp4,134 
     sleep 149 
-    sleep 5 
+
     beep note_Fsharp4,134 
     sleep 149 
-    sleep 5 
+
     beep note_B4,46 
     sleep 51 
     sleep 30 
     beep note_B4,46 
     sleep 304 
-    sleep 5 
+
     beep note_Csharp5,134 
     sleep 149 
-    sleep 5 
+
     beep note_D5,273 
     sleep 304 
-    sleep 5 
+
     beep note_A4,412 
     sleep 458 
-    sleep 5 
+
     beep note_A4,134 
     sleep 149 
-    sleep 5 
+
     beep note_A4,64 
     sleep 72 
-    sleep 5 
+
     beep note_A4,64 
     sleep 72 
-    sleep 5 
+
     beep note_A4,134 
     sleep 149 
-    sleep 5 
+
     beep note_A4,134 
     sleep 149 
-    sleep 5 
+
     beep note_A4,134 
     sleep 149 
-    sleep 5 
+
     beep note_D5,134 
     sleep 149 
-    sleep 5 
+
     beep note_D5,134 
-    sleep 149 
-    sleep 5 
+    sleep 155
     beep note_D5,51 
     sleep 56 
-    sleep 30 
     beep note_D5,51 
-    sleep 56 
-    sleep 10 
-    beep note_D5,134 
-    sleep 149 
-    sleep 5 
-    beep note_E5,273 
-    sleep 304 
-    sleep 5 
-    beep note_E5,273 
-    sleep 304 
-    sleep 5 
-    beep note_Csharp5,134 
-    sleep 149 
-    sleep 5 
-    beep note_A5,134 
-    sleep 149 
-    sleep 5 
-    beep note_A5,134 
-    sleep 149 
-    sleep 5 
-    beep note_A5,134 
-    sleep 149 
-    sleep 5 
-    beep note_A5,134 
-    sleep 149 
-    sleep 5 
-    beep note_A5,134 
-    sleep 149 
-    sleep 5 
-    beep note_A5,134 
-    sleep 149 
-    sleep 314 
-    beep note_A5,134 
-    sleep 149 
-    sleep 5 
-    beep note_A5,134 
-    sleep 149 
-    sleep 5 
-    beep note_A5,134 
-    sleep 149 
-    sleep 5 
-    beep note_A5,412 
-    sleep 458 
-    sleep 5 
-    beep note_Fsharp5,134 
-    sleep 149 
-    sleep 5 
-    beep note_E5,134 
-    sleep 149 
-    sleep 5 
-    beep note_Fsharp5,134 
-    sleep 149 
-    sleep 5 
-    beep note_E5,134 
-    sleep 149 
-    sleep 5 
-    beep note_Fsharp5,273 
-    sleep 304 
-    sleep 5 
-    beep note_E5,134 
-    sleep 149 
-    sleep 5 
-    beep note_Fsharp5,273 
-    sleep 304 
-    sleep 5 
-    beep note_E5,134 
-    sleep 149 
-    sleep 5 
-    beep note_Fsharp5,134 
-    sleep 149 
-    sleep 5 
-    beep note_E5,134 
-    sleep 149 
-    sleep 5 
-    beep note_Fsharp5,273 
-    sleep 304 
-    sleep 5 
-    beep note_G5,134 
-    sleep 149 
-    sleep 5 
 ENDM

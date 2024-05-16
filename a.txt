@@ -1,0 +1,178 @@
+song_1 MACRO 
+;mario bros
+
+
+ENDM
+
+song_2 MACRO
+;Zelda song Of Time
+    beep note_A4, 750 
+    beep note_D4, 1500 
+    beep note_F4, 750 
+
+    beep note_A4, 750 
+    beep note_D4, 1500 
+    beep note_F4, 750 
+
+    beep note_A4, 375 
+    beep note_C5, 375 
+    beep note_B4, 750 
+    beep note_G4, 750 
+    beep note_F4, 375 
+    beep note_G4, 375 
+
+    beep note_A4, 750 
+    beep note_D4, 750 
+    beep note_C4, 375 
+    beep note_E4, 375 
+    beep note_D4, 2750 
+ENDM
+
+song_3 MACRO 
+;Fur Elise
+    beep note_A3, 350
+    beep note_Dsharp4, 350
+    beep note_E4, 350
+    beep note_Dsharp4, 350
+    beep note_E4, 350
+    beep note_B3, 350
+    sleep 50
+    beep note_D4, 350
+    sleep 50
+    beep note_C4, 350
+    sleep 50
+    beep note_A3, 900
+    sleep 750
+    beep note_D3, 350
+    beep note_F3, 350
+    sleep 50
+    beep note_A3, 350
+    sleep 50
+    beep note_B3, 900
+    sleep 750
+    beep note_F3, 350
+    sleep 50
+    beep note_Asharp3, 350
+    sleep 50
+    beep note_B3, 350
+    sleep 50
+    beep note_C4, 900
+    sleep 750
+    sleep 750
+    beep note_E4, 350
+    sleep 50
+    beep note_Dsharp4, 350
+    beep note_E4, 350
+    sleep 50
+    beep note_Dsharp4, 350
+    sleep 50
+    beep note_E4, 350
+    sleep 50
+    beep note_B3, 350
+    sleep 50
+    beep note_D4, 350
+    sleep 50
+    beep note_C4, 350
+    sleep 50
+    beep note_A3, 900
+    sleep 750
+    beep note_D3, 350
+    sleep 50
+    beep note_F3, 350
+    sleep 50
+    beep note_A3, 350
+    sleep 50
+    beep note_B3, 900
+    sleep 750
+    beep note_F3, 350
+    sleep 50
+    beep note_C4, 350
+    sleep 50
+    beep note_B3, 350
+    sleep 50
+    beep note_A3, 900
+    sleep 750
+    beep note_B3, 350
+    sleep 50
+    beep note_C4, 350
+    sleep 50
+    beep note_D4, 350
+    sleep 50
+    beep note_E4, 900
+    sleep 750
+    beep note_G3, 350
+    sleep 50
+
+ENDM
+
+song_4 MACRO
+;Despacito
+    beep note_D5,709 
+    sleep 788 
+    sleep 10 
+    beep note_Csharp5,709 
+    sleep 788 
+    sleep 5 
+    beep note_B4,273 
+    sleep 304 
+    sleep 5 
+    beep note_Fsharp4,273 
+    sleep 304 
+    sleep 5 
+    beep note_Fsharp4,134 
+    sleep 149 
+    sleep 5 
+    beep note_Fsharp4,134 
+    sleep 149 
+    sleep 5 
+    beep note_Fsharp4,134 
+    sleep 149 
+    sleep 5 
+    beep note_Fsharp4,134 
+    sleep 149 
+    sleep 5 
+    beep note_Fsharp4,134 
+    sleep 149 
+    sleep 5 
+    beep note_B4,134 
+    sleep 149 
+    sleep 5 
+    beep note_B4,134 
+    sleep 149 
+    sleep 5 
+    beep note_B4,134 
+    sleep 149 
+    sleep 5 
+    beep note_B4,273 
+    sleep 304 
+    sleep 5 
+    beep note_A4,134 
+    sleep 149 
+    sleep 5 
+    beep note_B4,273 
+    sleep 304 
+    sleep 5 
+    beep note_G4,412 
+    sleep 458 
+    sleep 5 
+    beep note_G4,134 
+    sleep 149 
+    sleep 5 
+    beep note_G4,134 
+    sleep 149 
+    sleep 5 
+    beep note_G4,134 
+    sleep 149 
+    sleep 5 
+    beep note_G4,134 
+    sleep 149 
+    sleep 5 
+    beep note_G4,134 
+    sleep 149 
+    sleep 5 
+    beep note_B4,134 
+    sleep 149 
+    sleep 5 
+    beep note_B4,134 
+
+ENDM

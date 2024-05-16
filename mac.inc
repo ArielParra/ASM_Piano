@@ -7,7 +7,7 @@ endl MACRO
 ENDM 
 print MACRO str_msg
     MOV AH, 09h
-    MOV DX, OFFSET str_msg  
+    LEA DX, str_msg  
     INT 21h
 ENDM 
 putch MACRO char_ch    
@@ -25,7 +25,7 @@ gets MACRO buff_str
 ;          TamMax,longUsada,esa longUsada DUPlicalos con el valor '?' 
 ;buffer DB 255   ,    ?    ,255 DUP(?); reserva un buffer de 255 chars
     MOV AH,0Ah      
-    MOV DX,OFFSET buff_str
+    LEA DX, buff_str
     INT 21h
 ENDM
 puts MACRO buff_str

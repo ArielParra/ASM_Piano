@@ -11,12 +11,16 @@ include song.inc
 buff_input DB 10,?,10 DUP(?)
 int16_aux DW 0
 int8_var2 DB 0
+str_string0 DB "1. piano, 2. caja musical, 3. salir: ",'$';
 str_string1 DB "presiona numeros y letras para sonido y esc para salir",'$';
-int16_sostenido DW 800 ;ms
+str_string2 DB "1. Mario, 2. Zelda SOT, 3.Fur Elise, 4. Despacito: ",'$';
+int16_sostenido DW 800;ms
 ;constantes
 
-jumpTable_numbers DW c_0,c_1,c_2,c_3,c_4,c_5,c_6,c_7,c_8,c_9,case_default;
-jumpTable_letters DW a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y,z,default
+jumpTable_menu    DW et_default,et_piano,et_jukebox,et_salir;
+jumpTable_jukebox DW case_default,case_song_1,case_song_2,case_song_3,case_song_4;
+jumpTable_numbers DW c_0,c_1,c_2,c_3,c_4,c_5,c_6,c_7,c_8,c_9,c_default;
+jumpTable_letters DW a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y,z,default;
 
 ;notas
 note_C3       equ 9121; Do 
@@ -63,11 +67,41 @@ MOV AX,@DATA
 MOV DS,AX
 
 main PROC
+    while0:
+    endl
+    print str_string0;
+    getch
+    XOR AH,AH
+        SUB AL, '0'
+        CMP AX,3
+        JLE et_switch_validado
+        MOV AX,0;default
 
+        et_switch_validado:
+            SHL AX,1
+            LEA BX,jumpTable_menu
+            ADD BX,AX;indice ya validado
+            JMP [BX]
 
-   print str_string1
-   endl
+        switch_menu:
+            et_piano:
+                CALL piano
+            et_default:
+                jmp while0;
+            et_jukebox:
+                CALL jukebox
+                jmp et_default;
+            et_salir:
+                exit
+            
+    JMP while0
+    eliwh0:
 
+main ENDP
+
+piano PROC
+    endl
+    print str_string1;presiona numeros y letras para sonido y esc para salir
     while1:
         
         kbhit 
@@ -76,17 +110,6 @@ main PROC
         getch
         XOR AH, AH
         
-        CALL piano;se "manda" el AL del getch
-        
-    JMP while1   
-    eliwh1:
-
-    song_4
-
-exit
-main ENDP
-
-piano PROC
          CMP AL,1Bh;'esc' 
          JNE et_continue
          JMP eliwh1
@@ -123,66 +146,48 @@ piano PROC
          
          switch_numbers:
                c_1:
-                   putch 'C'
-                   putch '#'
                    beep note_Csharp3, int16_sostenido
                    JMP break
                c_2:
-                   putch 'D'
-                   putch '#'
                    beep note_Dsharp3, int16_sostenido
                    JMP break
                c_3:
                    JMP break
                c_4:
-                   putch 'F'
-                   putch '#'
                    beep note_Fsharp3, int16_sostenido
                    JMP break
                c_5:
-                   putch 'G'
-                   putch '#'
                    beep note_Gsharp3, int16_sostenido
                    JMP break
                c_6:
-                   putch 'A'
-                   putch '#'
                    beep note_Asharp3, int16_sostenido
                    JMP break
                c_7:
                c_8:
                c_9:
                c_0:
-               case_default:
+               c_default:
                    JMP break 
-
          switch_letters:
                q:
-                   putch 'C'
                    beep note_C3, int16_sostenido
                    JMP break
                w:
-                   putch 'D'
                    beep note_D3, int16_sostenido
                    JMP break
                e:
-                   putch 'E'
                    beep note_E3, int16_sostenido
                    JMP break
                r:
-                   putch 'F'
                    beep note_F3, int16_sostenido
                    JMP break
                t:
-                   putch 'G'
                    beep note_G3, int16_sostenido
                    JMP break
                y:
-                   putch 'A'
                    beep note_A3, int16_sostenido
                    JMP break
                u:
-                   putch 'B'
                    beep note_B3, int16_sostenido
                    JMP break
                i:
@@ -190,30 +195,20 @@ piano PROC
                p:
                    JMP break
                a:
-                   putch 'C'
-                   putch '#'
                    beep note_Csharp4, int16_sostenido
                    JMP break
                s:
-                   putch 'D'
-                   putch '#'
                    beep note_Dsharp4, int16_sostenido
                    JMP break
                d:
                    JMP break
                f:
-                   putch 'F'
-                   putch '#'
                    beep note_Fsharp4, int16_sostenido
                    JMP break
                g:
-                   putch 'G'
-                   putch '#'
                    beep note_Gsharp4, int16_sostenido
                    JMP break
                h:
-                   putch 'A'
-                   putch '#'
                    beep note_Asharp4, int16_sostenido
                    JMP break
                j:
@@ -221,38 +216,81 @@ piano PROC
                l:
                    JMP break
                z:
-                   putch 'C'
                    beep note_C4, int16_sostenido
                    JMP break
                x:
-                   putch 'D'
                    beep note_D4, int16_sostenido
                    JMP break
                c:
-                   putch 'E'
                    beep note_E4, int16_sostenido
                    JMP break
                v:
-                   putch 'F'
                    beep note_F4, int16_sostenido
                    JMP break
                b:
-                   putch 'G'
                    beep note_G4, int16_sostenido
                    JMP break
                n:
-                   putch 'A'
                    beep note_A4, int16_sostenido
                    JMP break
                m:
-                   putch 'B'
                    beep note_B4, int16_sostenido
                    JMP break
                default:
          break:
-         putch ' ';
-         
+
+    JMP while1   
+    eliwh1:
 RET
 piano ENDP
+
+jukebox PROC
+    endl
+    print str_string2;1. Mario, 2. Zelda SOT, 3.Fur Elise, 4. Despacito
+    getch
+    XOR AH,AH
+        SUB AL,'0'
+        CMP AX,4
+        JLE et_jukebox_validado
+        MOV AX,0;default
+
+        et_jukebox_validado:
+            SHL AX,1
+            LEA BX,jumpTable_jukebox
+            ADD BX,AX;indice ya validado
+            JMP [BX]
+
+        switch_jukebox:
+            case_song_1:
+                CALL play_song_1
+                RET
+            case_song_2:
+                CALL play_song_2
+                RET
+            case_song_3:
+                CALL play_song_3
+            case_song_4:
+                CALL play_song_4
+                RET
+            case_default:
+                RET
+jukebox ENDP
+
+play_song_1 PROC
+    song_1
+RET
+play_song_1 ENDP
+play_song_2 PROC
+    song_2
+RET
+play_song_2 ENDP
+play_song_3 PROC
+    song_3
+RET
+play_song_3 ENDP
+play_song_4 PROC
+    song_4
+RET
+play_song_4 ENDP
 
 END;code segment
