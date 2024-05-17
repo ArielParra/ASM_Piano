@@ -7,21 +7,18 @@ include mac.inc
 include song.inc
 
 ;variables
-buff_input DB 10,?,10 DUP(?)
-int16_aux DW 0
-int8_var2 DB 0
+int16_delay DW 0;ms
 str_string0 DB "1. piano, 2. caja musical, 3. salir: ",'$';
 str_string1 DB "presiona numeros y letras para sonido y esc para salir",'$';
-str_string2 DB "1. Mario, 2. Zelda SOT, 3.Fur Elise, 4. Despacito, otro. salir: ",'$';
-int16_sostenido DW 800;ms
-;constantes
+str_string2 DB "1. Mario, 2. Zelda SOT, 3.Fur Elise, 4. Despacito, 5. salir: ",'$';
 
+;jump / branch  tables
 jumpTable_menu    DW et_default,et_piano,et_jukebox,et_salir;
-jumpTable_jukebox DW case_default,case_song_1,case_song_2,case_song_3,case_song_4;
+jumpTable_jukebox DW case_default,case_song_1,case_song_2,case_song_3,case_song_4,case_salir;
 jumpTable_numbers DW c_0,c_1,c_2,c_3,c_4,c_5,c_6,c_7,c_8,c_9,c_default;
 jumpTable_letters DW a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y,z,default;
 
-;notas
+;note constants
 note_C3       equ 9121; Do 
 note_Csharp3  equ 8609; Do sostenido
 note_D3       equ 8126; Re
@@ -66,12 +63,11 @@ MOV AX,@DATA
 MOV DS,AX
 
 main PROC
+    print str_string0;1. piano, 2. caja musical, 3. salir:
     while0:
-    endl
-    print str_string0;
-    getch
-    XOR AH,AH
-        SUB AL, '0'
+        getch
+        XOR AH,AH
+        SUB AL,'0';to number
         CMP AX,3
         JLE et_switch_validado
         MOV AX,0;default
@@ -86,13 +82,17 @@ main PROC
             et_piano:
                 CALL piano
             et_default:
-                jmp while0;
+                ;print inside loop
+                endl
+                print str_string0;1. piano, 2. caja musical, 3. salir:
+                jmp et_break0;
             et_jukebox:
                 CALL jukebox
                 jmp et_default;
             et_salir:
                 exit
-            
+            et_break0:
+
     JMP while0
     eliwh0:
 
@@ -101,6 +101,7 @@ main ENDP
 piano PROC
     endl
     print str_string1;presiona numeros y letras para sonido y esc para salir
+    MOV int16_delay,800;ms 
     while1:
         
         kbhit 
@@ -109,192 +110,187 @@ piano PROC
         getch
         XOR AH, AH
         
-         CMP AL,1Bh;'esc' 
-         JNE et_continue
-         JMP eliwh1
+        CMP AL,1Bh;'esc' 
+        JNE et_continue
+        JMP eliwh1
 
-         et_continue:
+        et_continue:
 
-         CMP AL, '9'
-         JG et_validarLetras
+        CMP AL, '9'
+        JG et_validarLetras
 
-         et_validarNumeros:
-               SUB AL, '0'
-               CMP AX,10
-               JL et_numerosValidados
-               MOV AX,10;default
+        et_validarNumeros:
+            SUB AL, '0'
+            CMP AX,10
+            JL et_numerosValidados
+            MOV AX,10;default
 
-               et_numerosValidados:
-                  SHL AX,1
-                  LEA BX,jumpTable_numbers
-                  ADD BX,AX;indice ya validado
-                  JMP [BX]
-               
-         et_validarLetras:
-               SUB AL, 'a'         
-               ;validar rango
-               CMP AX,26; 'z' - 'a'
-               JL et_letrasValidadas
-               MOV AX,26;default
-         
-              et_letrasValidadas:
-                  SHL AX,1
-                  LEA BX,jumpTable_Letters
-                  ADD BX,AX
-                  JMP [BX]
-         
-         switch_numbers:
-               c_1:
-                   MOV BX, note_Csharp3
-                   CALL pianoNote
-                   JMP break
-               c_2:
-                   MOV BX, note_Dsharp3
-                   CALL pianoNote
-                   JMP break
-               c_3:
-                   JMP break
-               c_4:
-                   MOV BX, note_Fsharp3
-                   CALL pianoNote
-                   JMP break
-               c_5:
-                   MOV BX, note_Gsharp3
-                   CALL pianoNote
-                   JMP break
-               c_6:
-                   MOV BX, note_Asharp3
-                   CALL pianoNote
-                   JMP break
-               c_7:
-               c_8:
-               c_9:
-               c_0:
-               c_default:
-                   JMP break 
-         switch_letters:
-               q:
-                   MOV BX, note_C3
-                   CALL pianoNote
-                   JMP break
-               w:
-                   MOV BX, note_D3
-                   CALL pianoNote
-                   JMP break
-               e:
-                   MOV BX, note_E3
-                   CALL pianoNote
-                   JMP break
-               r:
-                   MOV BX, note_F3
-                   CALL pianoNote
-                   JMP break
-               t:
-                   MOV BX, note_G3
-                   CALL pianoNote
-                   JMP break
-               y:
-                   MOV BX, note_A3
-                   CALL pianoNote
-                   JMP break
-               u:
-                   MOV BX, note_B3
-                   CALL pianoNote
-                   JMP break
-               i:
-               o:
-               p:
-                   JMP break
-               a:
-                   MOV BX, note_Csharp4
-                   CALL pianoNote
-                   JMP break
-               s:
-                   MOV BX, note_Dsharp4
-                   CALL pianoNote
-                   JMP break
-               d:
-                   JMP break
-               f:
-                   MOV BX, note_Fsharp4
-                   CALL pianoNote
-                   JMP break
-               g:
-                   MOV BX, note_Gsharp4
-                   CALL pianoNote
-                   JMP break
-               h:
-                   MOV BX, note_Asharp4
-                   CALL pianoNote
-                   JMP break
-               j:
-               k:
-               l:
-                   JMP break
-               z:
-                   MOV BX, note_C4
-                   CALL pianoNote
-                   JMP break
-               x:
-                   MOV BX, note_D4
-                   CALL pianoNote
-                   JMP break
-               c:
-                   MOV BX, note_E4
-                   CALL pianoNote
-                   JMP break
-               v:
-                   MOV BX, note_F4
-                   CALL pianoNote
-                   JMP break
-               b:
-                   MOV BX, note_G4
-                   CALL pianoNote
-                   JMP break
-               n:
-                   MOV BX, note_A4
-                   CALL pianoNote
-                   JMP break
-               m:
-                   MOV BX, note_B4
-                   CALL pianoNote
-                   JMP break
-               default:
-         break:
+            et_numerosValidados:
+                SHL AX,1
+                LEA BX,jumpTable_numbers
+                ADD BX,AX;indice ya validado
+                JMP [BX]
+            
+        et_validarLetras:
+            SUB AL, 'a'         
+            ;validar rango
+            CMP AX,26; 'z' - 'a'
+            JL et_letrasValidadas
+            MOV AX,26;default
+        
+            et_letrasValidadas:
+                SHL AX,1
+                LEA BX,jumpTable_Letters
+                ADD BX,AX
+                JMP [BX]
+        
+        switch_numbers:
+            c_1:
+                MOV BX, note_Csharp3
+                CALL beep_proc
+                JMP break1
+            c_2:
+                MOV BX, note_Dsharp3
+                CALL beep_proc
+                JMP break1
+            c_3:
+                JMP break1
+            c_4:
+                MOV BX, note_Fsharp3
+                CALL beep_proc
+                JMP break1
+            c_5:
+                MOV BX, note_Gsharp3
+                CALL beep_proc
+                JMP break1
+            c_6:
+                MOV BX, note_Asharp3
+                CALL beep_proc
+                JMP break1
+            c_7:
+            c_8:
+            c_9:
+            c_0:
+            c_default:
+                JMP break1
+            
+            break1:
+                jmp break2; jumps to the switch_letters break2;
+
+        switch_letters:
+            q:
+                MOV BX, note_C3
+                CALL beep_proc
+                JMP break2
+            w:
+                MOV BX, note_D3
+                CALL beep_proc
+                JMP break2
+            e:
+                MOV BX, note_E3
+                CALL beep_proc
+                JMP break2
+            r:
+                MOV BX, note_F3
+                CALL beep_proc
+                JMP break2
+            t:
+                MOV BX, note_G3
+                CALL beep_proc
+                JMP break2
+            y:
+                MOV BX, note_A3
+                CALL beep_proc
+                JMP break2
+            u:
+                MOV BX, note_B3
+                CALL beep_proc
+                JMP break2
+            i:
+            o:
+            p:
+                JMP break2
+            a:
+                MOV BX, note_Csharp4
+                CALL beep_proc
+                JMP break2
+            s:
+                MOV BX, note_Dsharp4
+                CALL beep_proc
+                JMP break2
+            d:
+                JMP break2
+            f:
+                MOV BX, note_Fsharp4
+                CALL beep_proc
+                JMP break2
+            g:
+                MOV BX, note_Gsharp4
+                CALL beep_proc
+                JMP break2
+            h:
+                MOV BX, note_Asharp4
+                CALL beep_proc
+                JMP break2
+            j:
+            k:
+            l:
+                JMP break2
+            z:
+                MOV BX, note_C4
+                CALL beep_proc
+                JMP break2
+            x:
+                MOV BX, note_D4
+                CALL beep_proc
+                JMP break2
+            c:
+                MOV BX, note_E4
+                CALL beep_proc
+                JMP break2
+            v:
+                MOV BX, note_F4
+                CALL beep_proc
+                JMP break2
+            b:
+                MOV BX, note_G4
+                CALL beep_proc
+                JMP break2
+            n:
+                MOV BX, note_A4
+                CALL beep_proc
+                JMP break2
+            m:
+                MOV BX, note_B4
+                CALL beep_proc
+                JMP break2
+            default:
+        break2:
 
     JMP while1   
     eliwh1:
 RET
 piano ENDP
 
-pianoNote PROC; beep
-    MOV     AL, 182         ; Prepare the speaker
-    OUT     43h, AL
-    MOV     AX, BX   ; Load frequency number
-    OUT     42h, AL         ; Output low byte
-    MOV     AL, AH          ; Output high byte
-    OUT     42h, AL
-    IN      AL, 61h         ; Turn on note
-    OR      AL,00000011b   ; Set bits 1 and 0
-    OUT     61h, AL
-    sleep int16_sostenido 
-    IN      AL, 61h         ; Turn off note
-    AND     AL, 11111100b   ; Reset bits 1 and 0
-    OUT     61h, AL
+beep_proc PROC
+    beep_on
+    sleep int16_delay
+    beep_off
 RET
-pianoNote ENDP
+beep_proc ENDP
 
 jukebox PROC
     endl
-    print str_string2;1. Mario, 2. Zelda SOT, 3.Fur Elise, 4. Despacito,otro. salir: 
-    getch
-    XOR AH,AH
+    print str_string2;1. Mario, 2. Zelda SOT, 3.Fur Elise, 4. Despacito, 5. salir: 
+    while2:
+        getch
+        XOR AH,AH
         SUB AL,'0'
-        CMP AX,4
-        JLE et_jukebox_validado
+        CMP AX,5
+        JLE et_salto_validado
         MOV AX,0;default
 
-        et_jukebox_validado:
+        et_salto_validado:
             SHL AX,1
             LEA BX,jumpTable_jukebox
             ADD BX,AX;indice ya validado
@@ -303,35 +299,23 @@ jukebox PROC
         switch_jukebox:
             case_song_1:
                 song_1
-                RET
+                JMP while2
             case_song_2:
                 song_2
-                RET
+                JMP case_default
+            case_default:
+                JMP while2
             case_song_3:
                 song_3
+                JMP case_default
             case_song_4:
                 song_4
-                RET
-            case_default:
-                RET
-jukebox ENDP
-
-beep_proc PROC; beep
-    MOV     AL, 182         ; Prepare the speaker
-    OUT     43h, AL
-    MOV     AX, BX   ; Load frequency number
-    OUT     42h, AL         ; Output low byte
-    MOV     AL, AH          ; Output high byte
-    OUT     42h, AL
-    IN      AL, 61h         ; Turn on note
-    OR      AL,00000011b   ; Set bits 1 and 0
-    OUT     61h, AL
-    sleep int16_aux
-    IN      AL, 61h         ; Turn off note
-    AND     AL, 11111100b   ; Reset bits 1 and 0
-    OUT     61h, AL
+                JMP case_default
+            case_salir:
+                JMP eliwh2
+    eliwh2:
 RET
-beep_proc ENDP
+jukebox ENDP
 
 
 END;code segment

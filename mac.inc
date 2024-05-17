@@ -158,22 +158,17 @@ porDiez MACRO
     POP AX
 ENDM
 
-sleep MACRO int16_miliseconds
+sleep MACRO int16_milliseconds
          XOR CX,CX
-         MOV AX,int16_miliseconds
+         MOV AX,int16_milliseconds
          MOV BX,10
-         
          XOR DX,DX
          DIV BX
-         
          porDiez;DX*10
          MOV CX,DX
-         
          XOR DX,DX
          DIV BX
-         
-         ADD CX,DX
-                 
+         ADD CX,DX 
          MOV DX,CX 
          porDiez;
          porDiez;
@@ -184,17 +179,19 @@ sleep MACRO int16_miliseconds
          INT   15H
 ENDM
 
-beep MACRO int16_frequency, int16_duration
+beep_on MACRO
     MOV     AL, 182         ; Prepare the speaker
     OUT     43h, AL
-    MOV     AX, int16_frequency   ; Load frequency number
+    MOV     AX, BX          ; Load frequency number from BX
     OUT     42h, AL         ; Output low byte
     MOV     AL, AH          ; Output high byte
     OUT     42h, AL
     IN      AL, 61h         ; Turn on note
-    OR      AL,00000011b   ; Set bits 1 and 0
+    OR      AL,00000011b    ; Set bits 1 and 0
     OUT     61h, AL
-    sleep int16_duration 
+ENDM
+
+beep_off MACRO
     IN      AL, 61h         ; Turn off note
     AND     AL, 11111100b   ; Reset bits 1 and 0
     OUT     61h, AL

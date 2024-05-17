@@ -1,4 +1,0 @@
-https://github.com/ArielParra/Beep/blob/main/beep_mario.c
-https://github.com/raymag/zeldab/blob/main/src/zelda.c
-https://gist.github.com/gluschenko/4ff8bb49802dc848626091ff14704112
-https://github.com/n3m351d4/SongsForBeeper/blob/master/Despacito.ino
