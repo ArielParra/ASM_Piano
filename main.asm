@@ -6,14 +6,13 @@
 include mac.inc
 include song.inc
 
-
 ;variables
 buff_input DB 10,?,10 DUP(?)
 int16_aux DW 0
 int8_var2 DB 0
 str_string0 DB "1. piano, 2. caja musical, 3. salir: ",'$';
 str_string1 DB "presiona numeros y letras para sonido y esc para salir",'$';
-str_string2 DB "1. Mario, 2. Zelda SOT, 3.Fur Elise, 4. Despacito: ",'$';
+str_string2 DB "1. Mario, 2. Zelda SOT, 3.Fur Elise, 4. Despacito, otro. salir: ",'$';
 int16_sostenido DW 800;ms
 ;constantes
 
@@ -146,21 +145,26 @@ piano PROC
          
          switch_numbers:
                c_1:
-                   beep note_Csharp3, int16_sostenido
+                   MOV BX, note_Csharp3
+                   CALL pianoNote
                    JMP break
                c_2:
-                   beep note_Dsharp3, int16_sostenido
+                   MOV BX, note_Dsharp3
+                   CALL pianoNote
                    JMP break
                c_3:
                    JMP break
                c_4:
-                   beep note_Fsharp3, int16_sostenido
+                   MOV BX, note_Fsharp3
+                   CALL pianoNote
                    JMP break
                c_5:
-                   beep note_Gsharp3, int16_sostenido
+                   MOV BX, note_Gsharp3
+                   CALL pianoNote
                    JMP break
                c_6:
-                   beep note_Asharp3, int16_sostenido
+                   MOV BX, note_Asharp3
+                   CALL pianoNote
                    JMP break
                c_7:
                c_8:
@@ -170,71 +174,90 @@ piano PROC
                    JMP break 
          switch_letters:
                q:
-                   beep note_C3, int16_sostenido
+                   MOV BX, note_C3
+                   CALL pianoNote
                    JMP break
                w:
-                   beep note_D3, int16_sostenido
+                   MOV BX, note_D3
+                   CALL pianoNote
                    JMP break
                e:
-                   beep note_E3, int16_sostenido
+                   MOV BX, note_E3
+                   CALL pianoNote
                    JMP break
                r:
-                   beep note_F3, int16_sostenido
+                   MOV BX, note_F3
+                   CALL pianoNote
                    JMP break
                t:
-                   beep note_G3, int16_sostenido
+                   MOV BX, note_G3
+                   CALL pianoNote
                    JMP break
                y:
-                   beep note_A3, int16_sostenido
+                   MOV BX, note_A3
+                   CALL pianoNote
                    JMP break
                u:
-                   beep note_B3, int16_sostenido
+                   MOV BX, note_B3
+                   CALL pianoNote
                    JMP break
                i:
                o:
                p:
                    JMP break
                a:
-                   beep note_Csharp4, int16_sostenido
+                   MOV BX, note_Csharp4
+                   CALL pianoNote
                    JMP break
                s:
-                   beep note_Dsharp4, int16_sostenido
+                   MOV BX, note_Dsharp4
+                   CALL pianoNote
                    JMP break
                d:
                    JMP break
                f:
-                   beep note_Fsharp4, int16_sostenido
+                   MOV BX, note_Fsharp4
+                   CALL pianoNote
                    JMP break
                g:
-                   beep note_Gsharp4, int16_sostenido
+                   MOV BX, note_Gsharp4
+                   CALL pianoNote
                    JMP break
                h:
-                   beep note_Asharp4, int16_sostenido
+                   MOV BX, note_Asharp4
+                   CALL pianoNote
                    JMP break
                j:
                k:
                l:
                    JMP break
                z:
-                   beep note_C4, int16_sostenido
+                   MOV BX, note_C4
+                   CALL pianoNote
                    JMP break
                x:
-                   beep note_D4, int16_sostenido
+                   MOV BX, note_D4
+                   CALL pianoNote
                    JMP break
                c:
-                   beep note_E4, int16_sostenido
+                   MOV BX, note_E4
+                   CALL pianoNote
                    JMP break
                v:
-                   beep note_F4, int16_sostenido
+                   MOV BX, note_F4
+                   CALL pianoNote
                    JMP break
                b:
-                   beep note_G4, int16_sostenido
+                   MOV BX, note_G4
+                   CALL pianoNote
                    JMP break
                n:
-                   beep note_A4, int16_sostenido
+                   MOV BX, note_A4
+                   CALL pianoNote
                    JMP break
                m:
-                   beep note_B4, int16_sostenido
+                   MOV BX, note_B4
+                   CALL pianoNote
                    JMP break
                default:
          break:
@@ -244,9 +267,26 @@ piano PROC
 RET
 piano ENDP
 
+pianoNote PROC; beep
+    MOV     AL, 182         ; Prepare the speaker
+    OUT     43h, AL
+    MOV     AX, BX   ; Load frequency number
+    OUT     42h, AL         ; Output low byte
+    MOV     AL, AH          ; Output high byte
+    OUT     42h, AL
+    IN      AL, 61h         ; Turn on note
+    OR      AL,00000011b   ; Set bits 1 and 0
+    OUT     61h, AL
+    sleep int16_sostenido 
+    IN      AL, 61h         ; Turn off note
+    AND     AL, 11111100b   ; Reset bits 1 and 0
+    OUT     61h, AL
+RET
+pianoNote ENDP
+
 jukebox PROC
     endl
-    print str_string2;1. Mario, 2. Zelda SOT, 3.Fur Elise, 4. Despacito
+    print str_string2;1. Mario, 2. Zelda SOT, 3.Fur Elise, 4. Despacito,otro. salir: 
     getch
     XOR AH,AH
         SUB AL,'0'
@@ -262,35 +302,36 @@ jukebox PROC
 
         switch_jukebox:
             case_song_1:
-                CALL play_song_1
+                song_1
                 RET
             case_song_2:
-                CALL play_song_2
+                song_2
                 RET
             case_song_3:
-                CALL play_song_3
+                song_3
             case_song_4:
-                CALL play_song_4
+                song_4
                 RET
             case_default:
                 RET
 jukebox ENDP
 
-play_song_1 PROC
-    song_1
+beep_proc PROC; beep
+    MOV     AL, 182         ; Prepare the speaker
+    OUT     43h, AL
+    MOV     AX, BX   ; Load frequency number
+    OUT     42h, AL         ; Output low byte
+    MOV     AL, AH          ; Output high byte
+    OUT     42h, AL
+    IN      AL, 61h         ; Turn on note
+    OR      AL,00000011b   ; Set bits 1 and 0
+    OUT     61h, AL
+    sleep int16_aux
+    IN      AL, 61h         ; Turn off note
+    AND     AL, 11111100b   ; Reset bits 1 and 0
+    OUT     61h, AL
 RET
-play_song_1 ENDP
-play_song_2 PROC
-    song_2
-RET
-play_song_2 ENDP
-play_song_3 PROC
-    song_3
-RET
-play_song_3 ENDP
-play_song_4 PROC
-    song_4
-RET
-play_song_4 ENDP
+beep_proc ENDP
+
 
 END;code segment

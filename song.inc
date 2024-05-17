@@ -1,457 +1,1621 @@
 song_1 MACRO 
 ;mario bros
-    beep note_E4,100 
+
+    MOV BX,note_E4
+    MOV int16_aux,100
+    CALL beep_proc 
     sleep 100 
-    beep note_E4,100 
+    MOV BX,note_E4
+    MOV int16_aux,100
+    CALL beep_proc 
     sleep 300 
-    beep note_E4,100 
+    MOV BX,note_E4
+    MOV int16_aux,100
+    CALL beep_proc 
     sleep 300 
-    beep note_C4,100 
+    MOV BX,note_C4
+    MOV int16_aux,100
+    CALL beep_proc 
     sleep 100 
-    beep note_E4,100 
+    MOV BX,note_E4
+    MOV int16_aux,100
+    CALL beep_proc 
     sleep 300 
-    beep note_G4,100 
+    MOV BX,note_G4
+    MOV int16_aux,100
+    CALL beep_proc 
     sleep 700 
-    beep note_G3,100 
+    MOV BX,note_G3
+    MOV int16_aux,100
+    CALL beep_proc 
     sleep 700 
-    beep note_C4,300 
+
+    MOV BX,note_C4
+    MOV int16_aux,300
+    CALL beep_proc 
     sleep 300 
-    beep note_G3,300 
+    MOV BX,note_G3
+    MOV int16_aux,300
+    CALL beep_proc 
     sleep 300 
-    beep note_E3,300 
+    MOV BX,note_E3
+    MOV int16_aux,300
+    CALL beep_proc 
     sleep 300 
-    beep note_A3,300 
+    MOV BX,note_A3
+    MOV int16_aux,300
+    CALL beep_proc 
     sleep 100 
-    beep note_B3,100 
+    MOV BX,note_B3
+    MOV int16_aux,100
+    CALL beep_proc 
     sleep 300 
-    beep note_Asharp3,200 
-    beep note_A3,100 
+    MOV BX,note_Asharp3
+    MOV int16_aux,200
+    CALL beep_proc 
+    MOV BX,note_A3
+    MOV int16_aux,100
+    CALL beep_proc 
     sleep 300 
-    beep note_G3,100 
+
+    MOV BX,note_G3
+    MOV int16_aux,100
+    CALL beep_proc 
     sleep 150 
-    beep note_E4,100 
+    MOV BX,note_E4
+    MOV int16_aux,100
+    CALL beep_proc 
     sleep 150 
-    beep note_G4,100 
+    MOV BX,note_G4
+    MOV int16_aux,100
+    CALL beep_proc 
     sleep 150 
-    beep note_A4,100 
+    MOV BX,note_A4
+    MOV int16_aux,100
+    CALL beep_proc 
     sleep 300 
-    beep note_F4,100 
+    MOV BX,note_F4
+    MOV int16_aux,100
+    CALL beep_proc 
     sleep 100 
-    beep note_G4,100 
+    MOV BX,note_G4
+    MOV int16_aux,100
+    CALL beep_proc 
     sleep 300 
-    beep note_E4,100 
+    MOV BX,note_E4
+    MOV int16_aux,100
+    CALL beep_proc 
     sleep 300 
-    beep note_C4,100 
+    MOV BX,note_C4
+    MOV int16_aux,100
+    CALL beep_proc 
     sleep 100 
-    beep note_D4,100 
+    MOV BX,note_D4
+    MOV int16_aux,100
+    CALL beep_proc 
     sleep 100 
-    beep note_B3,100 
+    MOV BX,note_B3
+    MOV int16_aux,100
+    CALL beep_proc 
     sleep 500 
-    beep note_C4,300 
+
+    MOV BX,note_C4
+    MOV int16_aux,300
+    CALL beep_proc 
     sleep 300 
-    beep note_G3,300 
+    MOV BX,note_G3
+    MOV int16_aux,300
+    CALL beep_proc 
     sleep 300 
-    beep note_E3,300 
+    MOV BX,note_E3
+    MOV int16_aux,300
+    CALL beep_proc 
     sleep 300 
-    beep note_A3,300 
+    MOV BX,note_A3
+    MOV int16_aux,300
+    CALL beep_proc 
     sleep 100 
-    beep note_B3,100 
+    MOV BX,note_B3
+    MOV int16_aux,100
+    CALL beep_proc 
     sleep 300 
-    beep note_Asharp3,200 
-    beep note_A3,100 
+    MOV BX,note_Asharp3
+    MOV int16_aux,200
+    CALL beep_proc 
+    MOV BX,note_A3
+    MOV int16_aux,100
+    CALL beep_proc 
     sleep 300 
-    beep note_G3,100 
+
+
+    MOV BX,note_G3
+    MOV int16_aux,100
+    CALL beep_proc 
     sleep 150 
-    beep note_E4,100 
+    MOV BX,note_E4
+    MOV int16_aux,100
+    CALL beep_proc 
     sleep 150 
-    beep note_G4,100 
+    MOV BX,note_G4
+    MOV int16_aux,100
+    CALL beep_proc 
     sleep 150 
-    beep note_A4,100 
+    MOV BX,note_A4
+    MOV int16_aux,100
+    CALL beep_proc 
     sleep 300 
-    beep note_F4,100 
+    MOV BX,note_F4
+    MOV int16_aux,100
+    CALL beep_proc 
     sleep 100 
-    beep note_G4,100 
+    MOV BX,note_G4
+    MOV int16_aux,100
+    CALL beep_proc 
     sleep 300 
-    beep note_E4,100 
+    MOV BX,note_E4
+    MOV int16_aux,100
+    CALL beep_proc 
     sleep 300 
-    beep note_C4,100 
+    MOV BX,note_C4
+    MOV int16_aux,100
+    CALL beep_proc 
     sleep 100 
-    beep note_D4,100 
+    MOV BX,note_D4
+    MOV int16_aux,100
+    CALL beep_proc 
     sleep 100 
-    beep note_B3,100 
+    MOV BX,note_B3
+    MOV int16_aux,100
+    CALL beep_proc 
     sleep 900 
-    beep note_G4,100 
+
+    
+    MOV BX,note_G4
+    MOV int16_aux,100
+    CALL beep_proc 
     sleep 100 
-    beep note_Fsharp4,100 
+    MOV BX,note_Fsharp4
+    MOV int16_aux,100
+    CALL beep_proc 
     sleep 100 
-    beep note_F4,100 
+    MOV BX,note_F4
+    MOV int16_aux,100
+    CALL beep_proc 
     sleep 100 
-    beep note_Dsharp4,100 
+    MOV BX,note_Dsharp4
+    MOV int16_aux,100
+    CALL beep_proc 
     sleep 300 
-    beep note_E4,100 
+    MOV BX,note_E4
+    MOV int16_aux,100
+    CALL beep_proc 
     sleep 300 
-    beep note_Gsharp3,100 
+
+    MOV BX,note_Gsharp3
+    MOV int16_aux,100
+    CALL beep_proc 
     sleep 100 
-    beep note_A3,100 
+    MOV BX,note_A3
+    MOV int16_aux,100
+    CALL beep_proc 
     sleep 100 
-    beep note_C4,100 
+    MOV BX,note_C4
+    MOV int16_aux,100
+    CALL beep_proc 
     sleep 300 
-    beep note_A3,100 
+    MOV BX,note_A3
+    MOV int16_aux,100
+    CALL beep_proc 
     sleep 100 
-    beep note_C4,100 
+    MOV BX,note_C4
+    MOV int16_aux,100
+    CALL beep_proc 
     sleep 100 
-    beep note_D4,100 
+    MOV BX,note_D4
+    MOV int16_aux,100
+    CALL beep_proc 
     sleep 500 
-    beep note_G4,100 
+
+    MOV BX,note_G4
+    MOV int16_aux,100
+    CALL beep_proc 
     sleep 100 
-    beep note_Fsharp4,100 
+    MOV BX,note_Fsharp4
+    MOV int16_aux,100
+    CALL beep_proc 
     sleep 100 
-    beep note_F4,100 
+    MOV BX,note_F4
+    MOV int16_aux,100
+    CALL beep_proc 
     sleep 100 
-    beep note_Dsharp4,100 
+    MOV BX,note_Dsharp4
+    MOV int16_aux,100
+    CALL beep_proc 
     sleep 300 
-    beep note_E4,100 
+    MOV BX,note_E4
+    MOV int16_aux,100
+    CALL beep_proc 
     sleep 300 
-    beep note_C5,100 
+
+    MOV BX,note_C5
+    MOV int16_aux,100
+    CALL beep_proc 
     sleep 300 
-    beep note_C5,100 
+    MOV BX,note_C5
+    MOV int16_aux,100
+    CALL beep_proc 
     sleep 100 
-    beep note_C5,100 
+    MOV BX,note_C5
+    MOV int16_aux,100
+    CALL beep_proc 
     sleep 1100 
-    beep note_G4,100 
+
+    MOV BX,note_G4
+    MOV int16_aux,100
+    CALL beep_proc 
     sleep 100 
-    beep note_Fsharp4,100 
+    MOV BX,note_Fsharp4
+    MOV int16_aux,100
+    CALL beep_proc 
     sleep 100 
-    beep note_F4,100 
+    MOV BX,note_F4
+    MOV int16_aux,100
+    CALL beep_proc 
     sleep 100 
-    beep note_Dsharp4,100 
+    MOV BX,note_Dsharp4
+    MOV int16_aux,100
+    CALL beep_proc 
     sleep 300 
-    beep note_E4,100 
+    MOV BX,note_E4
+    MOV int16_aux,100
+    CALL beep_proc 
     sleep 300 
-    beep note_Gsharp3,100 
+
+    MOV BX,note_Gsharp3
+    MOV int16_aux,100
+    CALL beep_proc 
     sleep 100 
-    beep note_A3,100 
+    MOV BX,note_A3
+    MOV int16_aux,100
+    CALL beep_proc 
     sleep 100 
-    beep note_C4,100 
+    MOV BX,note_C4
+    MOV int16_aux,100
+    CALL beep_proc 
     sleep 300 
-    beep note_A3,100 
+    MOV BX,note_A3
+    MOV int16_aux,100
+    CALL beep_proc 
     sleep 100 
-    beep note_C4,100 
+    MOV BX,note_C4
+    MOV int16_aux,100
+    CALL beep_proc 
     sleep 100 
-    beep note_D4,100 
+    MOV BX,note_D4
+    MOV int16_aux,100
+    CALL beep_proc 
     sleep 500 
-    beep note_Dsharp4,300 
+
+
+    MOV BX,note_Dsharp4
+    MOV int16_aux,300
+    CALL beep_proc 
     sleep 300 
-    beep note_D4,300 
+    MOV BX,note_D4
+    MOV int16_aux,300
+    CALL beep_proc 
     sleep 300 
-    beep note_C4,300 
+    MOV BX,note_C4
+    MOV int16_aux,300
+    CALL beep_proc 
     sleep 1300 
-    beep note_C4,100 
+
+    MOV BX,note_C4
+    MOV int16_aux,100
+    CALL beep_proc 
     sleep 100 
-    beep note_C4,100 
+    MOV BX,note_C4
+    MOV int16_aux,100
+    CALL beep_proc 
     sleep 300 
-    beep note_C4,100 
+    MOV BX,note_C4
+    MOV int16_aux,100
+    CALL beep_proc 
     sleep 300 
-    beep note_C4,100 
+
+    MOV BX,note_C4
+    MOV int16_aux,100
+    CALL beep_proc 
     sleep 100 
-    beep note_D4,100 
+    MOV BX,note_D4
+    MOV int16_aux,100
+    CALL beep_proc 
     sleep 300 
-    beep note_E4,200 
+    MOV BX,note_E4
+    MOV int16_aux,200
+    CALL beep_proc 
     sleep 50 
-    beep note_C4,200 
+    MOV BX,note_C4
+    MOV int16_aux,200
+    CALL beep_proc 
     sleep 50 
-    beep note_A3,200 
+    MOV BX,note_A3
+    MOV int16_aux,200
+    CALL beep_proc 
     sleep 50 
-    beep note_G3,100 
+    MOV BX,note_G3
+    MOV int16_aux,100
+    CALL beep_proc 
     sleep 700 
+
+    MOV BX,note_C4
+    MOV int16_aux,100
+    CALL beep_proc 
+    sleep 100 
+    MOV BX,note_C4
+    MOV int16_aux,100
+    CALL beep_proc 
+    sleep 300 
+    MOV BX,note_C4
+    MOV int16_aux,100
+    CALL beep_proc 
+    sleep 300 
+
+    MOV BX,note_C4
+    MOV int16_aux,100
+    CALL beep_proc 
+    sleep 100 
+    MOV BX,note_D4
+    MOV int16_aux,100
+    CALL beep_proc 
+    sleep 100 
+    MOV BX,note_E4
+    MOV int16_aux,100
+    CALL beep_proc 
+    sleep 700 
+    MOV BX,note_A4
+    MOV int16_aux,100
+    CALL beep_proc 
+    sleep 300 
+    MOV BX,note_G4
+    MOV int16_aux,100
+    CALL beep_proc 
+    sleep 500 
+
+    MOV BX,note_C4
+    MOV int16_aux,100
+    CALL beep_proc 
+    sleep 100 
+    MOV BX,note_C4
+    MOV int16_aux,100
+    CALL beep_proc 
+    sleep 300 
+    MOV BX,note_C4
+    MOV int16_aux,100
+    CALL beep_proc 
+    sleep 300 
+
+    MOV BX,note_C4
+    MOV int16_aux,100
+    CALL beep_proc 
+    sleep 100 
+    MOV BX,note_D4
+    MOV int16_aux,100
+    CALL beep_proc 
+    sleep 300 
+    MOV BX,note_E4
+    MOV int16_aux,200
+    CALL beep_proc 
+    sleep 50 
+
+    MOV BX,note_C4
+    MOV int16_aux,200
+    CALL beep_proc 
+    sleep 50 
+    MOV BX,note_A3
+    MOV int16_aux,200
+    CALL beep_proc 
+    sleep 50 
+    MOV BX,note_G3
+    MOV int16_aux,100
+    CALL beep_proc 
+    sleep 700 
+
+    MOV BX,note_E4
+    MOV int16_aux,100
+    CALL beep_proc 
+    sleep 100 
+    MOV BX,note_E4
+    MOV int16_aux,100
+    CALL beep_proc 
+    sleep 300 
+    MOV BX,note_E4
+    MOV int16_aux,100
+    CALL beep_proc 
+    sleep 300 
+    MOV BX,note_C4
+    MOV int16_aux,100
+    CALL beep_proc 
+    sleep 100 
+    MOV BX,note_E4
+    MOV int16_aux,100
+    CALL beep_proc 
+    sleep 300 
+    MOV BX,note_G4
+    MOV int16_aux,100
+    CALL beep_proc 
+    sleep 700 
+    MOV BX,note_G3
+    MOV int16_aux,100
+    CALL beep_proc 
+    sleep 700 
+    MOV BX,note_G3
+    MOV int16_aux,100
+    CALL beep_proc 
+    sleep 125 
+    MOV BX,note_C4
+    MOV int16_aux,100
+    CALL beep_proc 
+    sleep 125 
+    MOV BX,note_E4
+    MOV int16_aux,100
+    CALL beep_proc 
+    sleep 125 
+    MOV BX,note_G4
+    MOV int16_aux,100
+    CALL beep_proc 
+    sleep 125 
+    MOV BX,note_C5
+    MOV int16_aux,100
+    CALL beep_proc 
+    sleep 125 
+    
+    MOV BX,note_Dsharp5
+    MOV int16_aux,100
+    CALL beep_proc 
+    sleep 125 
+    MOV BX,note_G5
+    MOV int16_aux,100
+    CALL beep_proc 
+    sleep 575 
+    MOV BX,note_Dsharp5
+    MOV int16_aux,100
+    CALL beep_proc 
+    sleep 575 
+    MOV BX,note_Gsharp3
+    MOV int16_aux,100
+    CALL beep_proc 
+    sleep 125 
+    MOV BX,note_C4
+    MOV int16_aux,100
+    CALL beep_proc 
+    sleep 125 
+    MOV BX,note_Dsharp4
+    MOV int16_aux,100
+    CALL beep_proc 
+    sleep 125 
+    MOV BX,note_Gsharp4
+    MOV int16_aux,100
+    CALL beep_proc 
+    sleep 125 
+    MOV BX,note_C5
+    MOV int16_aux,100
+    CALL beep_proc 
+    sleep 125 
+    MOV BX,note_Dsharp5
+    MOV int16_aux,100
+    CALL beep_proc 
+    sleep 125 
+    MOV BX,note_Gsharp5
+    MOV int16_aux,100
+    CALL beep_proc 
+    sleep 575 
+    MOV BX,note_Dsharp5
+    MOV int16_aux,100
+    CALL beep_proc 
+    sleep 575 
+    MOV BX,note_Asharp3
+    MOV int16_aux,100
+    CALL beep_proc 
+    sleep 125 
+    MOV BX,note_D4
+    MOV int16_aux,100
+    CALL beep_proc 
+    sleep 125 
+    MOV BX,note_F4
+    MOV int16_aux,100
+    CALL beep_proc 
+    sleep 125 
+    MOV BX,note_Asharp4
+    MOV int16_aux,100
+    CALL beep_proc 
+    sleep 125 
+    MOV BX,note_D5
+    MOV int16_aux,100
+    CALL beep_proc 
+    sleep 125 
+    MOV BX,note_F5
+    MOV int16_aux,100
+    CALL beep_proc 
+    sleep 125 
+    MOV BX,note_Asharp5
+    MOV int16_aux,100
+    CALL beep_proc 
+    sleep 575 
+    MOV BX,note_Asharp5
+    MOV int16_aux,100
+    CALL beep_proc 
+    sleep 125 
+    MOV BX,note_Asharp5
+    MOV int16_aux,100
+    CALL beep_proc 
+    sleep 125 
+    MOV BX,note_Asharp5
+    MOV int16_aux,100
+    CALL beep_proc 
+    sleep 125 
+    MOV BX,note_C6
+    MOV int16_aux,675
+    CALL beep_proc 
+
 ENDM
+
 song_2 MACRO
 ;Zelda song Of Time
-    beep note_A4, 750 
-    beep note_D4, 1500 
-    beep note_F4, 750 
-    beep note_A4, 750 
-    beep note_D4, 1500 
-    beep note_F4, 750 
-    beep note_A4, 375 
-    beep note_C5, 375 
-    beep note_B4, 750 
-    beep note_G4, 750 
-    beep note_F4, 375 
-    beep note_G4, 375 
-    beep note_A4, 750 
-    beep note_D4, 750 
-    beep note_C4, 375 
-    beep note_E4, 375 
-    beep note_D4, 2750 
-    beep note_A4, 750 
-    beep note_D4, 1500 
-    beep note_F4, 750 
-    beep note_A4, 750 
-    beep note_D4, 1500 
-    beep note_F4, 750 
-    beep note_A4, 375 
-    beep note_C5, 375 
-    beep note_B4, 750 
-    beep note_G4, 750 
-    beep note_F4, 375 
-    beep note_G4, 375 
-    beep note_A4, 750 
-    beep note_D4, 750 
-    beep note_C4, 375 
-    beep note_E4, 375 
-    beep note_D4, 2750 
-    beep note_D4, 375 
-    beep note_C4, 375 
-    beep note_E4, 750 
-    beep note_C4, 750 
-    beep note_E4, 375 
-    beep note_F4, 375 
-    beep note_D4, 2000 
+    MOV BX,note_A4
+    MOV int16_aux,750
+    CALL beep_proc 
+    MOV BX,note_D4
+    MOV int16_aux,1500
+    CALL beep_proc 
+    MOV BX,note_F4
+    MOV int16_aux,750
+    CALL beep_proc 
+
+    MOV BX,note_A4
+    MOV int16_aux,750
+    CALL beep_proc 
+    MOV BX,note_D4
+    MOV int16_aux,1500
+    CALL beep_proc 
+    MOV BX,note_F4
+    MOV int16_aux,750
+    CALL beep_proc 
+
+    MOV BX,note_A4
+    MOV int16_aux,375
+    CALL beep_proc 
+    MOV BX,note_C5
+    MOV int16_aux,375
+    CALL beep_proc 
+    MOV BX,note_B4
+    MOV int16_aux,750
+    CALL beep_proc 
+    MOV BX,note_G4
+    MOV int16_aux,750
+    CALL beep_proc 
+    MOV BX,note_F4
+    MOV int16_aux,375
+    CALL beep_proc 
+    MOV BX,note_G4
+    MOV int16_aux,375
+    CALL beep_proc 
+
+    MOV BX,note_A4
+    MOV int16_aux,750
+    CALL beep_proc 
+    MOV BX,note_D4
+    MOV int16_aux,750
+    CALL beep_proc 
+    MOV BX,note_C4
+    MOV int16_aux,375
+    CALL beep_proc 
+    MOV BX,note_E4
+    MOV int16_aux,375
+    CALL beep_proc 
+    MOV BX,note_D4
+    MOV int16_aux,2750
+    CALL beep_proc 
+
+
+    MOV BX,note_A4
+    MOV int16_aux,750
+    CALL beep_proc 
+    MOV BX,note_D4
+    MOV int16_aux,1500
+    CALL beep_proc 
+    MOV BX,note_F4
+    MOV int16_aux,750
+    CALL beep_proc 
+
+    MOV BX,note_A4
+    MOV int16_aux,750
+    CALL beep_proc 
+    MOV BX,note_D4
+    MOV int16_aux,1500
+    CALL beep_proc 
+    MOV BX,note_F4
+    MOV int16_aux,750
+    CALL beep_proc 
+
+    MOV BX,note_A4
+    MOV int16_aux,375
+    CALL beep_proc 
+    MOV BX,note_C5
+    MOV int16_aux,375
+    CALL beep_proc 
+    MOV BX,note_B4
+    MOV int16_aux,750
+    CALL beep_proc 
+    MOV BX,note_G4
+    MOV int16_aux,750
+    CALL beep_proc 
+    MOV BX,note_F4
+    MOV int16_aux,375
+    CALL beep_proc 
+    MOV BX,note_G4
+    MOV int16_aux,375
+    CALL beep_proc 
+
+    MOV BX,note_A4
+    MOV int16_aux,750
+    CALL beep_proc 
+    MOV BX,note_D4
+    MOV int16_aux,750
+    CALL beep_proc 
+    MOV BX,note_C4
+    MOV int16_aux,375
+    CALL beep_proc 
+    MOV BX,note_E4
+    MOV int16_aux,375
+    CALL beep_proc 
+    MOV BX,note_D4
+    MOV int16_aux,2750
+    CALL beep_proc 
+
+
+    MOV BX,note_D4
+    MOV int16_aux,375
+    CALL beep_proc 
+    MOV BX,note_C4
+    MOV int16_aux,375
+    CALL beep_proc 
+    MOV BX,note_E4
+    MOV int16_aux,750
+    CALL beep_proc 
+    MOV BX,note_C4
+    MOV int16_aux,750
+    CALL beep_proc 
+    MOV BX,note_E4
+    MOV int16_aux,375
+    CALL beep_proc 
+    MOV BX,note_F4
+    MOV int16_aux,375
+    CALL beep_proc 
+
+    MOV BX,note_D4
+    MOV int16_aux,2000
+    CALL beep_proc 
+
+    MOV BX,note_D4
+    MOV int16_aux,375
+    CALL beep_proc 
+    MOV BX,note_C4
+    MOV int16_aux,375
+    CALL beep_proc 
+    MOV BX,note_E4
+    MOV int16_aux,750
+    CALL beep_proc 
+    MOV BX,note_C4
+    MOV int16_aux,750
+    CALL beep_proc 
+    MOV BX,note_F4
+    MOV int16_aux,375
+    CALL beep_proc 
+    MOV BX,note_G4
+    MOV int16_aux,375
+    CALL beep_proc 
+
+    MOV BX,note_D4
+    MOV int16_aux,2000
+    CALL beep_proc 
+
+    MOV BX,note_A4
+    MOV int16_aux,375
+    CALL beep_proc 
+    MOV BX,note_C5
+    MOV int16_aux,375
+    CALL beep_proc 
+    MOV BX,note_B4
+    MOV int16_aux,750
+    CALL beep_proc 
+    MOV BX,note_C5
+    MOV int16_aux,750
+    CALL beep_proc 
+    MOV BX,note_A4
+    MOV int16_aux,750
+    CALL beep_proc 
+
+    MOV BX,note_C5
+    MOV int16_aux,750
+    CALL beep_proc 
+    MOV BX,note_G4
+    MOV int16_aux,750
+    CALL beep_proc 
+    MOV BX,note_A4
+    MOV int16_aux,750
+    CALL beep_proc 
+    MOV BX,note_D4
+    MOV int16_aux,375
+    CALL beep_proc 
+    MOV BX,note_C4
+    MOV int16_aux,375
+    CALL beep_proc 
+
+
+    MOV BX,note_E4
+    MOV int16_aux,750
+    CALL beep_proc 
+    MOV BX,note_D4
+    MOV int16_aux,2250
+    CALL beep_proc 
+
+    MOV BX,note_F4
+    MOV int16_aux,375
+    CALL beep_proc 
+    MOV BX,note_G4
+    MOV int16_aux,375
+    CALL beep_proc 
+    MOV BX,note_F4
+    MOV int16_aux,750
+    CALL beep_proc 
+    MOV BX,note_G4
+    MOV int16_aux,750
+    CALL beep_proc 
+    MOV BX,note_E4
+    MOV int16_aux,375
+    CALL beep_proc     
+    MOV BX,note_C4
+    MOV int16_aux,375
+    CALL beep_proc 
+
+    MOV BX,note_F4
+    MOV int16_aux,375
+    CALL beep_proc 
+    MOV BX,note_E4
+    MOV int16_aux,375
+    CALL beep_proc 
+    MOV BX,note_D4
+    MOV int16_aux,2250
+    CALL beep_proc 
+
+
+    MOV BX,note_D4
+    MOV int16_aux,375
+    CALL beep_proc 
+    MOV BX,note_C4
+    MOV int16_aux,375
+    CALL beep_proc 
+    MOV BX,note_E4
+    MOV int16_aux,750
+    CALL beep_proc 
+    MOV BX,note_C4
+    MOV int16_aux,750
+    CALL beep_proc 
+    MOV BX,note_E4
+    MOV int16_aux,375
+    CALL beep_proc 
+    MOV BX,note_F4
+    MOV int16_aux,375
+    CALL beep_proc 
+
+    MOV BX,note_D4
+    MOV int16_aux,2000
+    CALL beep_proc 
+
+    MOV BX,note_D4
+    MOV int16_aux,375
+    CALL beep_proc 
+    MOV BX,note_C4
+    MOV int16_aux,375
+    CALL beep_proc 
+    MOV BX,note_E4
+    MOV int16_aux,750
+    CALL beep_proc 
+    MOV BX,note_C4
+    MOV int16_aux,750
+    CALL beep_proc 
+    MOV BX,note_F4
+    MOV int16_aux,375
+    CALL beep_proc 
+    MOV BX,note_G4
+    MOV int16_aux,375
+    CALL beep_proc 
+
+    MOV BX,note_D4
+    MOV int16_aux,2000
+    CALL beep_proc 
+
+    MOV BX,note_A4
+    MOV int16_aux,375
+    CALL beep_proc 
+    MOV BX,note_C5
+    MOV int16_aux,375
+    CALL beep_proc 
+    MOV BX,note_B4
+    MOV int16_aux,750
+    CALL beep_proc 
+    MOV BX,note_C5
+    MOV int16_aux,750
+    CALL beep_proc 
+    MOV BX,note_A4
+    MOV int16_aux,750
+    CALL beep_proc 
+
+    MOV BX,note_C5
+    MOV int16_aux,750
+    CALL beep_proc 
+    MOV BX,note_G4
+    MOV int16_aux,750
+    CALL beep_proc 
+    MOV BX,note_A4
+    MOV int16_aux,750
+    CALL beep_proc 
+    MOV BX,note_D4
+    MOV int16_aux,375
+    CALL beep_proc 
+    MOV BX,note_C4
+    MOV int16_aux,375
+    CALL beep_proc 
+
+
+    MOV BX,note_E4
+    MOV int16_aux,750
+    CALL beep_proc 
+    MOV BX,note_D4
+    MOV int16_aux,2250
+    CALL beep_proc 
+
+    MOV BX,note_F4
+    MOV int16_aux,375
+    CALL beep_proc 
+    MOV BX,note_G4
+    MOV int16_aux,375
+    CALL beep_proc 
+    MOV BX,note_F4
+    MOV int16_aux,750
+    CALL beep_proc 
+    MOV BX,note_G4
+    MOV int16_aux,750
+    CALL beep_proc 
+    MOV BX,note_E4
+    MOV int16_aux,375
+    CALL beep_proc     
+    MOV BX,note_C4
+    MOV int16_aux,375
+    CALL beep_proc 
+
+    MOV BX,note_F4
+    MOV int16_aux,375
+    CALL beep_proc 
+    MOV BX,note_E4
+    MOV int16_aux,375
+    CALL beep_proc 
+    MOV BX,note_D4
+    MOV int16_aux,2250
+    CALL beep_proc 
 ENDM
+
 song_3 MACRO 
 ;Fur Elise
-    beep note_A3, 350
-    beep note_Dsharp4, 350
-    beep note_E4, 350
-    beep note_Dsharp4, 350
-    beep note_E4, 350
-    beep note_B3, 350
+    MOV BX,note_A3
+    MOV int16_aux,350
+    CALL beep_proc
+    MOV BX,note_Dsharp4
+    MOV int16_aux,350
+    CALL beep_proc
+    MOV BX,note_E4
+    MOV int16_aux,350
+    CALL beep_proc
+    MOV BX,note_Dsharp4
+    MOV int16_aux,350
+    CALL beep_proc
+    MOV BX,note_E4
+    MOV int16_aux,350
+    CALL beep_proc
+    MOV BX,note_B3
+    MOV int16_aux,350
+    CALL beep_proc
     sleep 50
-    beep note_D4, 350
+    MOV BX,note_D4
+    MOV int16_aux,350
+    CALL beep_proc
     sleep 50
-    beep note_C4, 350
+    MOV BX,note_C4
+    MOV int16_aux,350
+    CALL beep_proc
     sleep 50
-    beep note_A3, 900
+    MOV BX,note_A3
+    MOV int16_aux,900
+    CALL beep_proc
     sleep 750
-    beep note_D3, 350
-    beep note_F3, 350
+    MOV BX,note_D3
+    MOV int16_aux,350
+    CALL beep_proc
+    MOV BX,note_F3
+    MOV int16_aux,350
+    CALL beep_proc
     sleep 50
-    beep note_A3, 350
+    MOV BX,note_A3
+    MOV int16_aux,350
+    CALL beep_proc
     sleep 50
-    beep note_B3, 900
+    MOV BX,note_B3
+    MOV int16_aux,900
+    CALL beep_proc
     sleep 750
-    beep note_F3, 350
+    MOV BX,note_F3
+    MOV int16_aux,350
+    CALL beep_proc
     sleep 50
-    beep note_Asharp3, 350
+    MOV BX,note_Asharp3
+    MOV int16_aux,350
+    CALL beep_proc
     sleep 50
-    beep note_B3, 350
+    MOV BX,note_B3
+    MOV int16_aux,350
+    CALL beep_proc
     sleep 50
-    beep note_C4, 900
+    MOV BX,note_C4
+    MOV int16_aux,900
+    CALL beep_proc
     sleep 750
     sleep 750
-    beep note_E4, 350
+    MOV BX,note_E4
+    MOV int16_aux,350
+    CALL beep_proc
     sleep 50
-    beep note_Dsharp4, 350
-    beep note_E4, 350
+    MOV BX,note_Dsharp4
+    MOV int16_aux,350
+    CALL beep_proc
+    MOV BX,note_E4
+    MOV int16_aux,350
+    CALL beep_proc
     sleep 50
-    beep note_Dsharp4, 350
+    MOV BX,note_Dsharp4
+    MOV int16_aux,350
+    CALL beep_proc
     sleep 50
-    beep note_E4, 350
+    MOV BX,note_E4
+    MOV int16_aux,350
+    CALL beep_proc
     sleep 50
-    beep note_B3, 350
+    MOV BX,note_B3
+    MOV int16_aux,350
+    CALL beep_proc
     sleep 50
-    beep note_D4, 350
+    MOV BX,note_D4
+    MOV int16_aux,350
+    CALL beep_proc
     sleep 50
-    beep note_C4, 350
+    MOV BX,note_C4
+    MOV int16_aux,350
+    CALL beep_proc
     sleep 50
-    beep note_A3, 900
+    MOV BX,note_A3
+    MOV int16_aux,900
+    CALL beep_proc
     sleep 750
-    beep note_D3, 350
+    MOV BX,note_D3
+    MOV int16_aux,350
+    CALL beep_proc
     sleep 50
-    beep note_F3, 350
+    MOV BX,note_F3
+    MOV int16_aux,350
+    CALL beep_proc
     sleep 50
-    beep note_A3, 350
+    MOV BX,note_A3
+    MOV int16_aux,350
+    CALL beep_proc
     sleep 50
-    beep note_B3, 900
+    MOV BX,note_B3
+    MOV int16_aux,900
+    CALL beep_proc
     sleep 750
-    beep note_F3, 350
+    MOV BX,note_F3
+    MOV int16_aux,350
+    CALL beep_proc
     sleep 50
-    beep note_C4, 350
+    MOV BX,note_C4
+    MOV int16_aux,350
+    CALL beep_proc
     sleep 50
-    beep note_B3, 350
+    MOV BX,note_B3
+    MOV int16_aux,350
+    CALL beep_proc
     sleep 50
-    beep note_A3, 900
+    MOV BX,note_A3
+    MOV int16_aux,900
+    CALL beep_proc
     sleep 750
-    beep note_B3, 350
+    MOV BX,note_B3
+    MOV int16_aux,350
+    CALL beep_proc
     sleep 50
-    beep note_C4, 350
+    MOV BX,note_C4
+    MOV int16_aux,350
+    CALL beep_proc
     sleep 50
-    beep note_D4, 350
+    MOV BX,note_D4
+    MOV int16_aux,350
+    CALL beep_proc
     sleep 50
-    beep note_E4, 900
+    MOV BX,note_E4
+    MOV int16_aux,900
+    CALL beep_proc
     sleep 750
-    beep note_G3, 350
+    MOV BX,note_G3
+    MOV int16_aux,350
+    CALL beep_proc
     sleep 50
-    beep note_F4, 350
+    MOV BX,note_F4
+    MOV int16_aux,350
+    CALL beep_proc
     sleep 50
-    beep note_E4, 350
+    MOV BX,note_E4
+    MOV int16_aux,350
+    CALL beep_proc
     sleep 50
-    beep note_D4, 900
+    MOV BX,note_D4
+    MOV int16_aux,900
+    CALL beep_proc
     sleep 750
-    beep note_E3, 350
+    MOV BX,note_E3
+    MOV int16_aux,350
+    CALL beep_proc
     sleep 50
-    beep note_E4, 350
+    MOV BX,note_E4
+    MOV int16_aux,350
+    CALL beep_proc
     sleep 50
-    beep note_D4, 350
+    MOV BX,note_D4
+    MOV int16_aux,350
+    CALL beep_proc
     sleep 50
-    beep note_C4, 900
+    MOV BX,note_C4
+    MOV int16_aux,900
+    CALL beep_proc
     sleep 750
-    beep note_D3, 350
+    MOV BX,note_D3
+    MOV int16_aux,350
+    CALL beep_proc
     sleep 50
-    beep note_D4, 350
+    MOV BX,note_D4
+    MOV int16_aux,350
+    CALL beep_proc
     sleep 50
-    beep note_C4, 350
+    MOV BX,note_C4
+    MOV int16_aux,350
+    CALL beep_proc
     sleep 50
-    beep note_B3, 900
+    MOV BX,note_B3
+    MOV int16_aux,900
+    CALL beep_proc
     sleep 750
     sleep 50
-    beep note_E4, 350
+    MOV BX,note_E4
+    MOV int16_aux,350
+    CALL beep_proc
     sleep 50
-    beep note_Dsharp4, 350
+    MOV BX,note_Dsharp4
+    MOV int16_aux,350
+    CALL beep_proc
     sleep 50
-    beep note_E4, 350
+    MOV BX,note_E4
+    MOV int16_aux,350
+    CALL beep_proc
     sleep 50
-    beep note_Dsharp4, 350
+    MOV BX,note_Dsharp4
+    MOV int16_aux,350
+    CALL beep_proc
+    sleep 50
+    MOV BX,note_E4
+    MOV int16_aux,350
+    CALL beep_proc
+    sleep 50
+    MOV BX,note_B3
+    MOV int16_aux,350
+    CALL beep_proc
+    sleep 50
+    MOV BX,note_D4
+    MOV int16_aux,350
+    CALL beep_proc
+    sleep 50
+    MOV BX,note_C4
+    MOV int16_aux,350
+    CALL beep_proc
+    sleep 50
+    MOV BX,note_A3
+    MOV int16_aux,900
+    CALL beep_proc
+    sleep 750
+    MOV BX,note_D3
+    MOV int16_aux,350
+    CALL beep_proc
+    sleep 50
+    MOV BX,note_F3
+    MOV int16_aux,350
+    CALL beep_proc
+    sleep 50
+    MOV BX,note_A3
+    MOV int16_aux,350
+    CALL beep_proc
+    sleep 50
+    MOV BX,note_B3
+    MOV int16_aux,900
+    CALL beep_proc
 ENDM
+
 song_4 MACRO
 ;Despacito
-    beep note_D5,709 
+    MOV BX,note_D5
+    MOV int16_aux,709
+    CALL beep_proc 
     sleep 788 
     sleep 10 
-    beep note_Csharp5,709 
+    MOV BX,note_Csharp5
+    MOV int16_aux,709
+    CALL beep_proc 
     sleep 788 
-    beep note_B4,273 
+    sleep 5 
+    MOV BX,note_B4
+    MOV int16_aux,273
+    CALL beep_proc 
     sleep 304 
-    beep note_Fsharp4,273 
+    sleep 5 
+    MOV BX,note_Fsharp4
+    MOV int16_aux,273
+    CALL beep_proc 
     sleep 304 
-    beep note_Fsharp4,134 
+    sleep 5 
+    MOV BX,note_Fsharp4
+    MOV int16_aux,134
+    CALL beep_proc 
     sleep 149 
-    beep note_Fsharp4,134 
+    sleep 5 
+    MOV BX,note_Fsharp4
+    MOV int16_aux,134
+    CALL beep_proc 
     sleep 149 
-    beep note_Fsharp4,134 
+    sleep 5 
+    MOV BX,note_Fsharp4
+    MOV int16_aux,134
+    CALL beep_proc 
     sleep 149 
-    beep note_Fsharp4,134 
+    sleep 5 
+    MOV BX,note_Fsharp4
+    MOV int16_aux,134
+    CALL beep_proc 
     sleep 149 
-    beep note_Fsharp4,134 
+    sleep 5 
+    MOV BX,note_Fsharp4
+    MOV int16_aux,134
+    CALL beep_proc 
     sleep 149 
-    beep note_B4,134 
+    sleep 5 
+    MOV BX,note_B4
+    MOV int16_aux,134
+    CALL beep_proc 
     sleep 149 
-    beep note_B4,134 
+    sleep 5 
+    MOV BX,note_B4
+    MOV int16_aux,134
+    CALL beep_proc 
     sleep 149 
-    beep note_B4,134 
+    sleep 5 
+    MOV BX,note_B4
+    MOV int16_aux,134
+    CALL beep_proc 
     sleep 149 
-    beep note_B4,273 
+    sleep 5 
+    MOV BX,note_B4
+    MOV int16_aux,273
+    CALL beep_proc 
     sleep 304 
-    beep note_A4,134 
+    sleep 5 
+    MOV BX,note_A4
+    MOV int16_aux,134
+    CALL beep_proc 
     sleep 149 
-    beep note_B4,273 
+    sleep 5 
+    MOV BX,note_B4
+    MOV int16_aux,273
+    CALL beep_proc 
     sleep 304 
-    beep note_G4,412 
+    sleep 5 
+    MOV BX,note_G4
+    MOV int16_aux,412
+    CALL beep_proc 
     sleep 458 
-    beep note_G4,134 
+    sleep 5 
+    MOV BX,note_G4
+    MOV int16_aux,134
+    CALL beep_proc 
     sleep 149 
-    beep note_G4,134 
+    sleep 5 
+    MOV BX,note_G4
+    MOV int16_aux,134
+    CALL beep_proc 
     sleep 149 
-    beep note_G4,134 
+    sleep 5 
+    MOV BX,note_G4
+    MOV int16_aux,134
+    CALL beep_proc 
     sleep 149 
-    beep note_G4,134 
+    sleep 5 
+    MOV BX,note_G4
+    MOV int16_aux,134
+    CALL beep_proc 
     sleep 149 
-    beep note_G4,134 
+    sleep 5 
+    MOV BX,note_G4
+    MOV int16_aux,134
+    CALL beep_proc 
     sleep 149 
-    beep note_B4,134 
+    sleep 5 
+    MOV BX,note_B4
+    MOV int16_aux,134
+    CALL beep_proc 
     sleep 149 
-    beep note_B4,134 
+    sleep 5 
+    MOV BX,note_B4
+    MOV int16_aux,134
+    CALL beep_proc 
     sleep 149 
-    beep note_B4,134 
+    sleep 5 
+    MOV BX,note_B4
+    MOV int16_aux,134
+    CALL beep_proc 
     sleep 149 
-    beep note_B4,273 
+    sleep 5 
+    MOV BX,note_B4
+    MOV int16_aux,273
+    CALL beep_proc 
     sleep 304 
-    beep note_Csharp5,134 
+    sleep 5 
+    MOV BX,note_Csharp5
+    MOV int16_aux,134
+    CALL beep_proc 
     sleep 149 
-    beep note_D5,273 
+    sleep 5 
+    MOV BX,note_D5
+    MOV int16_aux,273
+    CALL beep_proc 
     sleep 304 
-    beep note_A4,412 
+    sleep 5 
+    MOV BX,note_A4
+    MOV int16_aux,412
+    CALL beep_proc 
     sleep 458 
-    beep note_A4,134 
+    sleep 5 
+    MOV BX,note_A4
+    MOV int16_aux,134
+    CALL beep_proc 
     sleep 149 
-    beep note_A4,134 
+    sleep 5 
+    MOV BX,note_A4
+    MOV int16_aux,134
+    CALL beep_proc 
     sleep 149 
-    beep note_A4,134 
+    sleep 5 
+    MOV BX,note_A4
+    MOV int16_aux,134
+    CALL beep_proc 
     sleep 149 
-    beep note_A4,417 
+    sleep 5 
+    MOV BX,note_A4
+    MOV int16_aux,417
+    CALL beep_proc 
     sleep 46 
     sleep 36 
-    beep note_A4,37 
+    MOV BX,note_A4
+    MOV int16_aux,37
+    CALL beep_proc 
     sleep 41 
     sleep 30 
-    beep note_A4,134 
+    MOV BX,note_A4
+    MOV int16_aux,134
+    CALL beep_proc 
     sleep 149 
-    beep note_D5,134 
+    sleep 5 
+    MOV BX,note_D5
+    MOV int16_aux,134
+    CALL beep_proc 
     sleep 149 
-    beep note_D5,134 
+    sleep 5 
+    MOV BX,note_D5
+    MOV int16_aux,134
+    CALL beep_proc 
     sleep 149 
-    beep note_D5,46 
+    sleep 5 
+    MOV BX,note_D5
+    MOV int16_aux,46
+    CALL beep_proc 
     sleep 51 
     sleep 30 
-    beep note_D5,46 
+    MOV BX,note_D5
+    MOV int16_aux,46
+    CALL beep_proc 
     sleep 51 
     sleep 20 
-    beep note_D5,273 
+    MOV BX,note_D5
+    MOV int16_aux,273
+    CALL beep_proc 
     sleep 304 
-    beep note_E5,134 
+    sleep 5 
+    MOV BX,note_E5
+    MOV int16_aux,134
+    CALL beep_proc 
     sleep 149 
-    beep note_E5,273 
+    sleep 5 
+    MOV BX,note_E5
+    MOV int16_aux,273
+    CALL beep_proc 
     sleep 304 
-    beep note_Csharp5,691 
+    sleep 5 
+    MOV BX,note_Csharp5
+    MOV int16_aux,691
+    CALL beep_proc 
     sleep 767 
     sleep 314 
-    beep note_D5,552 
+    MOV BX,note_D5
+    MOV int16_aux,552
+    CALL beep_proc 
     sleep 613 
-    beep note_Csharp5,552 
+    sleep 5 
+    MOV BX,note_Csharp5
+    MOV int16_aux,552
+    CALL beep_proc 
     sleep 613 
-    beep note_B4,273 
+    sleep 5 
+    MOV BX,note_B4
+    MOV int16_aux,273
+    CALL beep_proc 
     sleep 304 
-    beep note_Fsharp4,273 
+    sleep 5 
+    MOV BX,note_Fsharp4
+    MOV int16_aux,273
+    CALL beep_proc 
     sleep 304 
-    beep note_Fsharp4,134 
+    sleep 5 
+    MOV BX,note_Fsharp4
+    MOV int16_aux,134
+    CALL beep_proc 
     sleep 149 
-    beep note_Fsharp4,134 
+    sleep 5 
+    MOV BX,note_Fsharp4
+    MOV int16_aux,134
+    CALL beep_proc 
     sleep 149 
-    beep note_Fsharp4,134 
+    sleep 5 
+    MOV BX,note_Fsharp4
+    MOV int16_aux,134
+    CALL beep_proc 
     sleep 149 
-    beep note_Fsharp4,134 
+    sleep 5 
+    MOV BX,note_Fsharp4
+    MOV int16_aux,134
+    CALL beep_proc 
     sleep 149 
-    beep note_Fsharp4,134 
+    sleep 5 
+    MOV BX,note_Fsharp4
+    MOV int16_aux,134
+    CALL beep_proc 
     sleep 149 
-    beep note_B4,46 
+    sleep 5 
+    MOV BX,note_B4
+    MOV int16_aux,46
+    CALL beep_proc 
     sleep 51 
     sleep 30 
-    beep note_B4,46 
+    MOV BX,note_B4
+    MOV int16_aux,46
+    CALL beep_proc 
     sleep 304 
-    beep note_Csharp5,134 
+    sleep 5 
+    MOV BX,note_Csharp5
+    MOV int16_aux,134
+    CALL beep_proc 
     sleep 149 
-    beep note_D5,273 
+    sleep 5 
+    MOV BX,note_D5
+    MOV int16_aux,273
+    CALL beep_proc 
     sleep 304 
-    beep note_A4,412 
+    sleep 5 
+    MOV BX,note_A4
+    MOV int16_aux,412
+    CALL beep_proc 
     sleep 458 
-    beep note_A4,134 
+    sleep 5 
+    MOV BX,note_A4
+    MOV int16_aux,134
+    CALL beep_proc 
     sleep 149 
-    beep note_A4,64 
+    sleep 5 
+    MOV BX,note_A4
+    MOV int16_aux,64
+    CALL beep_proc 
     sleep 72 
-    beep note_A4,64 
+    sleep 5 
+    MOV BX,note_A4
+    MOV int16_aux,64
+    CALL beep_proc 
     sleep 72 
-    beep note_A4,134 
+    sleep 5 
+    MOV BX,note_A4
+    MOV int16_aux,134
+    CALL beep_proc 
     sleep 149 
-    beep note_A4,134 
+    sleep 5 
+    MOV BX,note_A4
+    MOV int16_aux,134
+    CALL beep_proc 
     sleep 149 
-    beep note_A4,134 
+    sleep 5 
+    MOV BX,note_A4
+    MOV int16_aux,134
+    CALL beep_proc 
     sleep 149 
-    beep note_D5,134 
+    sleep 5 
+    MOV BX,note_D5
+    MOV int16_aux,134
+    CALL beep_proc 
     sleep 149 
-    beep note_D5,134 
-    sleep 155
-    beep note_D5,51 
+    sleep 5 
+    MOV BX,note_D5
+    MOV int16_aux,134
+    CALL beep_proc 
+    sleep 149 
+    sleep 5 
+    MOV BX,note_D5
+    MOV int16_aux,51
+    CALL beep_proc 
     sleep 56 
-    beep note_D5,51 
+    sleep 30 
+    MOV BX,note_D5
+    MOV int16_aux,51
+    CALL beep_proc 
+    sleep 56 
+    sleep 10 
+    MOV BX,note_D5
+    MOV int16_aux,134
+    CALL beep_proc 
+    sleep 149 
+    sleep 5 
+    MOV BX,note_E5
+    MOV int16_aux,273
+    CALL beep_proc 
+    sleep 304 
+    sleep 5 
+    MOV BX,note_E5
+    MOV int16_aux,273
+    CALL beep_proc 
+    sleep 304 
+    sleep 5 
+    MOV BX,note_Csharp5
+    MOV int16_aux,134
+    CALL beep_proc 
+    sleep 149 
+    sleep 5 
+    MOV BX,note_A5
+    MOV int16_aux,134
+    CALL beep_proc 
+    sleep 149 
+    sleep 5 
+    MOV BX,note_A5
+    MOV int16_aux,134
+    CALL beep_proc 
+    sleep 149 
+    sleep 5 
+    MOV BX,note_A5
+    MOV int16_aux,134
+    CALL beep_proc 
+    sleep 149 
+    sleep 5 
+    MOV BX,note_A5
+    MOV int16_aux,134
+    CALL beep_proc 
+    sleep 149 
+    sleep 5 
+    MOV BX,note_A5
+    MOV int16_aux,134
+    CALL beep_proc 
+    sleep 149 
+    sleep 5 
+    MOV BX,note_A5
+    MOV int16_aux,134
+    CALL beep_proc 
+    sleep 149 
+    sleep 314 
+    MOV BX,note_A5
+    MOV int16_aux,134
+    CALL beep_proc 
+    sleep 149 
+    sleep 5 
+    MOV BX,note_A5
+    MOV int16_aux,134
+    CALL beep_proc 
+    sleep 149 
+    sleep 5 
+    MOV BX,note_A5
+    MOV int16_aux,134
+    CALL beep_proc 
+    sleep 149 
+    sleep 5 
+    MOV BX,note_A5
+    MOV int16_aux,412
+    CALL beep_proc 
+    sleep 458 
+    sleep 5 
+    MOV BX,note_Fsharp5
+    MOV int16_aux,134
+    CALL beep_proc 
+    sleep 149 
+    sleep 5 
+    MOV BX,note_E5
+    MOV int16_aux,134
+    CALL beep_proc 
+    sleep 149 
+    sleep 5 
+    MOV BX,note_Fsharp5
+    MOV int16_aux,134
+    CALL beep_proc 
+    sleep 149 
+    sleep 5 
+    MOV BX,note_E5
+    MOV int16_aux,134
+    CALL beep_proc 
+    sleep 149 
+    sleep 5 
+    MOV BX,note_Fsharp5
+    MOV int16_aux,273
+    CALL beep_proc 
+    sleep 304 
+    sleep 5 
+    MOV BX,note_E5
+    MOV int16_aux,134
+    CALL beep_proc 
+    sleep 149 
+    sleep 5 
+    MOV BX,note_Fsharp5
+    MOV int16_aux,273
+    CALL beep_proc 
+    sleep 304 
+    sleep 5 
+    MOV BX,note_E5
+    MOV int16_aux,134
+    CALL beep_proc 
+    sleep 149 
+    sleep 5 
+    MOV BX,note_Fsharp5
+    MOV int16_aux,134
+    CALL beep_proc 
+    sleep 149 
+    sleep 5 
+    MOV BX,note_E5
+    MOV int16_aux,134
+    CALL beep_proc 
+    sleep 149 
+    sleep 5 
+    MOV BX,note_Fsharp5
+    MOV int16_aux,273
+    CALL beep_proc 
+    sleep 304 
+    sleep 5 
+    MOV BX,note_G5
+    MOV int16_aux,134
+    CALL beep_proc 
+    sleep 149 
+    sleep 5 
 ENDM
