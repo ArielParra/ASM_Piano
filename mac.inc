@@ -42,6 +42,8 @@ pause MACRO
     INT 21h  
 ENDM    
 exit MACRO
+    MOV AX,03h
+    INT 10h
     MOV AH,4Ch
     INT 21h 
 ENDM

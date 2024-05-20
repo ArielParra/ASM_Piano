@@ -8,9 +8,7 @@ include song.inc
 
 ;variables
 int16_delay DW 0;ms
-str_string0 DB "1. piano, 2. caja musical, 3. salir: ",'$';
-str_string1 DB "presiona numeros y letras para sonido y esc para salir",'$';
-str_string2 DB "1. Mario, 2. Zelda SOT, 3.Fur Elise, 4. Despacito, 5. salir: ",'$';
+
 xpos        DB  0
 ypos        DB  0
 x2pos       DB  0
@@ -18,20 +16,12 @@ y2pos       DB  0
 aux         DB  0   
 
 ;jump / branch  tables
-jumpTable_menu    DW et_default,et_piano,et_jukebox,et_salir;
-jumpTable_jukebox DW case_default,case_song_1,case_song_2,case_song_3,case_song_4,case_salir;
+jumpTable_menu    DW et_default,et_piano,et_jukebox;
+jumpTable_jukebox DW case_default,case_song_1,case_song_2,case_song_3,case_song_4;
 jumpTable_numbers DW c_0,c_1,c_2,c_3,c_4,c_5,c_6,c_7,c_8,c_9,c_default;
 jumpTable_letters DW a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y,z,default;
 
 ;menu principal
-;str_titulo1    DB    "     _     ___   __  __ ",'$'
-;str_titulo2    DB    "    /_\   / __| |  \/  | ",'$'
-;str_titulo3    DB    "   / _ \  \__ \ | |\/| | ",'$'
-;str_titulo4    DB    "  /_/ \_\ |___/ |_|  |_|",'$'
-;str_titulo5    DB    "         ___   ___     _     _  _    ___  ",'$'
-;str_titulo6    DB    "        | _ \ |_ _|   /_\   | \| |  / _ \ ",'$' 
-;str_titulo7    DB    "        |  _/  | |   / _ \  | .` | | (_) |",'$'
-;str_titulo8    DB    "        |_|   |___| /_/ \_\ |_|\_|  \___/ ",'$'
 str_titulo1    DB    "    ___   ___     _     _  _    ___  ",'$'
 str_titulo2    DB    "   | _ \ |_ _|   /_\   | \| |  / _ \ ",'$' 
 str_titulo3    DB    "   |  _/  | |   / _ \  | .` | | (_) |",'$'
@@ -40,7 +30,6 @@ str_titulo5    DB    "                           _     ___   __  __ ",'$'
 str_titulo6    DB    "                          /_\   / __| |  \/  | ",'$'
 str_titulo7    DB    "                     _   / _ \  \__ \ | |\/| | ",'$'
 str_titulo8    DB    "                    |_| /_/ \_\ |___/ |_|  |_|",'$'
-
 
 str_piano1  DB    "                                               ____________                   ",'$'
 str_piano2  DB    "                                              /            |                  ",'$'
@@ -61,7 +50,7 @@ str_integrantes4 DB  "Diego Ivan Salas Pedroza",'$'
 str_menu1   DB  "Selecciona una opcion: ",'$'
 str_menu2   DB  "1. Piano",'$'
 str_menu3   DB  "2. Caja Musical",'$'
-str_menu4   DB  "3. Salir",'$'
+str_menu4   DB  "ESC. Salir",'$'
 
 ;Pantalla piano
 str_juego   DB "Presione ESC para salir", '$'
@@ -72,7 +61,7 @@ str_songMenu2  DB "1. Mario",'$'
 str_songMenu3  DB "2. Zelda SOT",'$'
 str_songMenu4  DB "3. Fur Elise",'$'
 str_songMenu5  DB "4. Despacito",'$'
-str_songMenu6  DB "5. salir",'$'
+str_songMenu6  DB "ESC. salir",'$'
 str_songMenu7  DB  "       |\",'$'
 str_songMenu8  DB  "    |--|/--------------------,~\-----------(_)------|~~~~|----,~\---------|",'$'
 str_songMenu9  DB  "    |--|---4-----------------|~'------------|------_|---_|----|~----------|",'$'
@@ -130,13 +119,17 @@ MOV AX,@DATA
 MOV DS,AX
 
 main PROC
-    ;print str_string0;1. piano, 2. caja musical, 3. salir:
     while0:
         CALL menu
         getch
         XOR AH,AH
+        CMP AL,1Bh;'esc' 
+        JNE et_continue0
+        exit;salir presionando esc
+
+        et_continue0:
         SUB AL,'0';to number
-        CMP AX,3
+        CMP AX,2
         JLE et_switch_validado
         MOV AX,0;default
 
@@ -150,15 +143,9 @@ main PROC
             et_piano:
                 CALL piano
             et_default:
-                ;print inside loop
-                endl
-                print str_string0;1. piano, 2. caja musical, 3. salir:
                 jmp et_break0;
             et_jukebox:
                 CALL jukebox
-                jmp et_default;
-            et_salir:
-                exit
             et_break0:
 
     JMP while0
@@ -168,7 +155,7 @@ main ENDP
 
 piano PROC
     CALL pantallaPiano
-    MOV int16_delay,200;ms 
+    MOV int16_delay,400;ms 
     while1:
         
         kbhit 
@@ -178,10 +165,10 @@ piano PROC
         XOR AH, AH
         
         CMP AL,1Bh;'esc' 
-        JNE et_continue
+        JNE et_continue1
         JMP eliwh1
 
-        et_continue:
+        et_continue1:
 
         CMP AL, '9'
         JG et_validarLetras
@@ -351,8 +338,14 @@ jukebox PROC
     while2:
         getch
         XOR AH,AH
+          
+        CMP AL,1Bh;'esc' 
+        JNE et_continue2
+        JMP eliwh2
+        
+        et_continue2:
         SUB AL,'0'
-        CMP AX,5
+        CMP AX,4
         JLE et_salto_validado
         MOV AX,0;default
 
@@ -377,8 +370,6 @@ jukebox PROC
             case_song_4:
                 song_4
                 JMP case_default
-            case_salir:
-                JMP eliwh2
     eliwh2:
 RET
 jukebox ENDP
