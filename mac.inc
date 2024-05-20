@@ -196,3 +196,14 @@ beep_off MACRO
     AND     AL, 11111100b   ; Reset bits 1 and 0
     OUT     61h, AL
 ENDM
+
+scrollUP MACRO filSup, colSup, filInf, colInf, color
+    MOV AH,06
+    MOV AL,0
+    MOV BH,color
+    MOV CH,filSup
+    MOV CL,colSup
+    MOV DH,filInf
+    MOV DL,colInf       
+    INT 10h
+ENDM

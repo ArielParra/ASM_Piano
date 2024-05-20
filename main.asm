@@ -11,12 +11,79 @@ int16_delay DW 0;ms
 str_string0 DB "1. piano, 2. caja musical, 3. salir: ",'$';
 str_string1 DB "presiona numeros y letras para sonido y esc para salir",'$';
 str_string2 DB "1. Mario, 2. Zelda SOT, 3.Fur Elise, 4. Despacito, 5. salir: ",'$';
+xpos        DB  0
+ypos        DB  0
+x2pos       DB  0
+y2pos       DB  0
+aux         DB  0   
 
 ;jump / branch  tables
 jumpTable_menu    DW et_default,et_piano,et_jukebox,et_salir;
 jumpTable_jukebox DW case_default,case_song_1,case_song_2,case_song_3,case_song_4,case_salir;
 jumpTable_numbers DW c_0,c_1,c_2,c_3,c_4,c_5,c_6,c_7,c_8,c_9,c_default;
 jumpTable_letters DW a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y,z,default;
+
+;menu principal
+;str_titulo1    DB    "     _     ___   __  __ ",'$'
+;str_titulo2    DB    "    /_\   / __| |  \/  | ",'$'
+;str_titulo3    DB    "   / _ \  \__ \ | |\/| | ",'$'
+;str_titulo4    DB    "  /_/ \_\ |___/ |_|  |_|",'$'
+;str_titulo5    DB    "         ___   ___     _     _  _    ___  ",'$'
+;str_titulo6    DB    "        | _ \ |_ _|   /_\   | \| |  / _ \ ",'$' 
+;str_titulo7    DB    "        |  _/  | |   / _ \  | .` | | (_) |",'$'
+;str_titulo8    DB    "        |_|   |___| /_/ \_\ |_|\_|  \___/ ",'$'
+str_titulo1    DB    "    ___   ___     _     _  _    ___  ",'$'
+str_titulo2    DB    "   | _ \ |_ _|   /_\   | \| |  / _ \ ",'$' 
+str_titulo3    DB    "   |  _/  | |   / _ \  | .` | | (_) |",'$'
+str_titulo4    DB    "   |_|   |___| /_/ \_\ |_|\_|  \___/ ",'$'
+str_titulo5    DB    "                           _     ___   __  __ ",'$'
+str_titulo6    DB    "                          /_\   / __| |  \/  | ",'$'
+str_titulo7    DB    "                     _   / _ \  \__ \ | |\/| | ",'$'
+str_titulo8    DB    "                    |_| /_/ \_\ |___/ |_|  |_|",'$'
+
+
+str_piano1  DB    "                                               ____________                   ",'$'
+str_piano2  DB    "                                              /            |                  ",'$'
+str_piano3  DB    "                                        _____/            /-----\----------,  ",'$'
+str_piano4  DB    "                                    ____|________________|___________/-----|  ",'$'
+str_piano5  DB    "                                   (//_///_//_///_//_///_//_///_//_///)     | ",'$'
+str_piano6  DB    "                                   /---------------------------------/_____/  ",'$'
+str_piano7  DB    "                                         |   | -------    |          | |      ",'$'
+str_piano8  DB    "                                         |  |        |  |            ||       ",'$'
+str_piano9  DB    "                                          ||          | |                     ",'$'
+str_piano10  DB   "                                                       ||                     ",'$'
+
+str_integrantes1 DB  "Inegrantes: ", '$'
+str_integrantes2 DB  "Miguel Angel Batres Luna",'$'
+str_integrantes3 DB  "Ariel Emilio Parra Martinez",'$'
+str_integrantes4 DB  "Diego Ivan Salas Pedroza",'$'
+
+str_menu1   DB  "Selecciona una opcion: ",'$'
+str_menu2   DB  "1. Piano",'$'
+str_menu3   DB  "2. Caja Musical",'$'
+str_menu4   DB  "3. Salir",'$'
+
+;Pantalla piano
+str_juego   DB "Presione ESC para salir", '$'
+
+;menu de canciones
+str_songMenu1  DB "REPERTORIO",'$'
+str_songMenu2  DB "1. Mario",'$'
+str_songMenu3  DB "2. Zelda SOT",'$'
+str_songMenu4  DB "3. Fur Elise",'$'
+str_songMenu5  DB "4. Despacito",'$'
+str_songMenu6  DB "5. salir",'$'
+str_songMenu7  DB  "       |\",'$'
+str_songMenu8  DB  "    |--|/--------------------,~\-----------(_)------|~~~~|----,~\---------|",'$'
+str_songMenu9  DB  "    |--|---4-----------------|~'------------|------_|---_|----|~----------|",'$'
+str_songMenu10 DB  "    |-/|.-----------|~~~~|--/|-------------/|-----(_)--(_)---/|----(_)----|",'$'
+str_songMenu11 DB  "    |(-|-)-4-------_|---_|--\|-----|~~~~|--\|----------------\|-----|-----|",'$'
+str_songMenu12 DB  "    |-`|'---------(_)--(_)--------_|---_|--------------------------/|-----|",'$'
+str_songMenu13 DB  "      \|                         (_)--(_)                          \|      ",'$'
+
+;Colores
+negro       DB  0
+blanco      DB  15
 
 ;note constants
 note_C3       equ 9121; Do 
@@ -63,8 +130,9 @@ MOV AX,@DATA
 MOV DS,AX
 
 main PROC
-    print str_string0;1. piano, 2. caja musical, 3. salir:
+    ;print str_string0;1. piano, 2. caja musical, 3. salir:
     while0:
+        CALL menu
         getch
         XOR AH,AH
         SUB AL,'0';to number
@@ -99,9 +167,8 @@ main PROC
 main ENDP
 
 piano PROC
-    endl
-    print str_string1;presiona numeros y letras para sonido y esc para salir
-    MOV int16_delay,800;ms 
+    CALL pantallaPiano
+    MOV int16_delay,200;ms 
     while1:
         
         kbhit 
@@ -280,8 +347,7 @@ RET
 beep_proc ENDP
 
 jukebox PROC
-    endl
-    print str_string2;1. Mario, 2. Zelda SOT, 3.Fur Elise, 4. Despacito, 5. salir: 
+    CALL menuCanciones
     while2:
         getch
         XOR AH,AH
@@ -317,5 +383,226 @@ jukebox PROC
 RET
 jukebox ENDP
 
+menu PROC
+    MOV AH,00
+    MOV AL,10h ;Modo de video
+    INT 10h
+
+    ;Imprimir el titulo del menu de inicio
+    MOV BH,0
+    MOV DH,3
+    MOV DL,0
+    MOV AH,02h
+    INT 10h
+    print str_titulo1
+    endl
+    print str_titulo2
+    endl
+    print str_titulo3
+    endl
+    print str_titulo4
+    endl
+    print str_titulo5
+    endl
+    print str_titulo6
+    endl
+    print str_titulo7
+    endl
+    print str_titulo8
+    ;endl
+
+    MOV BH,0
+    MOV DH,13
+    MOV DL,0
+    MOV AH,02h
+    INT 10h
+    print str_piano1
+    endl
+    print str_piano2
+    endl
+    print str_piano3
+    endl
+    print str_piano4
+    endl
+    print str_piano5
+    endl
+    print str_piano6
+    endl
+    print str_piano7
+    endl
+    print str_piano8
+    endl
+    print str_piano9
+    endl
+    print str_piano10  
+    
+    MOV BH,0
+    MOV DH,15
+    MOV DL,5
+    MOV AH,02h
+    INT 10h 
+    print str_menu1
+    MOV BH,0
+    MOV DH,16
+    MOV DL,5
+    MOV AH,02h
+    INT 10h 
+    print str_menu2
+    MOV BH,0
+    MOV DH,17
+    MOV DL,5
+    MOV AH,02h
+    INT 10h 
+    print str_menu3
+    MOV BH,0
+    MOV DH,18
+    MOV DL,5
+    MOV AH,02h
+    INT 10h 
+    print str_menu4
+
+    MOV BH,0
+    MOV DH,3
+    MOV DL,50
+    MOV AH,02h
+    INT 10h 
+    print str_integrantes1
+    MOV BH,0
+    MOV DH,4
+    MOV DL,45
+    MOV AH,02h
+    INT 10h 
+    print str_integrantes2
+    MOV BH,0
+    MOV DH,5
+    MOV DL,45
+    MOV AH,02h
+    INT 10h
+    print str_integrantes3
+    MOV BH,0
+    MOV DH,6
+    MOV DL,45
+    MOV AH,02h
+    INT 10h
+    print str_integrantes4
+    RET
+menu ENDP
+
+pantallaPiano PROC
+    MOV AH,05 ;Cambiar de pagina
+    MOV AL,01 
+    INT 10h
+    endl
+    endl
+    print str_juego
+
+    MOV ypos, 5
+    MOV xpos, 5
+    MOV y2pos, 20
+    MOV x2pos, 74
+    scrollUP ypos,xpos,y2pos,x2pos,blanco  
+
+    DEC xpos
+    pintarLineas:
+        ADD xpos,5
+        scrollUP ypos,xpos,y2pos,xpos,negro
+        CMP xpos, 74
+        JNE pintarLineas  
+    
+    MOV xpos,8
+    MOV x2pos,8
+    MOV y2pos,13
+    ADD x2pos,2
+    scrollUP ypos,xpos,y2pos,x2pos,negro
+    ADD xpos,5
+    ADD x2pos,5
+    scrollUP ypos,xpos,y2pos,x2pos,negro
+    ADD xpos,10
+    ADD x2pos,10
+    scrollUP ypos,xpos,y2pos,x2pos,negro
+    ADD xpos,5
+    ADD x2pos,5
+    scrollUP ypos,xpos,y2pos,x2pos,negro
+    ADD xpos,5
+    ADD x2pos,5
+    scrollUP ypos,xpos,y2pos,x2pos,negro
+    ADD xpos,10
+    ADD x2pos,10
+    scrollUP ypos,xpos,y2pos,x2pos,negro
+    ADD xpos,5
+    ADD x2pos,5
+    scrollUP ypos,xpos,y2pos,x2pos,negro
+    ADD xpos,10
+    ADD x2pos,10
+    scrollUP ypos,xpos,y2pos,x2pos,negro
+    ADD xpos,5
+    ADD x2pos,5
+    scrollUP ypos,xpos,y2pos,x2pos,negro
+    ADD xpos,5
+    ADD x2pos,5
+    scrollUP ypos,xpos,y2pos,x2pos,negro
+    RET
+pantallaPiano ENDP
+
+menuCanciones PROC
+    MOV AH,05 ;Cambiar de pagina
+    MOV AL,01
+    INT 10h
+
+    MOV BH,01
+    MOV DH,5
+    MOV DL,35
+    MOV AH,02
+    INT 10h
+    print str_songMenu1
+    MOV BH,01
+    MOV DH,6
+    MOV DL,35
+    MOV AH,02
+    INT 10h
+    print str_songMenu2
+    MOV BH,01
+    MOV DH,7
+    MOV DL,35
+    MOV AH,02
+    INT 10h
+    print str_songMenu3
+    MOV BH,01
+    MOV DH,8
+    MOV DL,35
+    MOV AH,02
+    INT 10h
+    print str_songMenu4
+    MOV BH,01
+    MOV DH,9
+    MOV DL,35
+    MOV AH,02
+    INT 10h
+    print str_songMenu5
+    MOV BH,01
+    MOV DH,10
+    MOV DL,35
+    MOV AH,02
+    INT 10h
+    print str_songMenu6
+    endl
+    endl
+    endl
+    endl
+    print str_songMenu7
+    endl
+    print str_songMenu8
+    endl
+    print str_songMenu9
+    endl
+    print str_songMenu10
+    endl
+    print str_songMenu11
+    endl
+    print str_songMenu12
+    endl
+    print str_songMenu13
+    RET
+menuCanciones ENDP
 
 END;code segment
