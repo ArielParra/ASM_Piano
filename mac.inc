@@ -15,6 +15,14 @@ putch MACRO char_ch
     MOV DL,char_ch
     INT 21h   
 ENDM
+putchC MACRO char_ch,color,n,page
+    MOV AH,09h
+    MOV AL,char_ch
+    MOV BH,page
+    MOV BL,color
+    MOV CX,n
+    INT 10h
+ENDM
 getchar MACRO 
     ;servicio 01 de la int 21h
     ;entrada de caracter con echo
@@ -92,8 +100,11 @@ setBG MACRO
     MOV DL,79  ;col lower right corner ;80 caracteres
     INT 10h       
 ENDM 
-gotoxy MACRO
+gotoxy MACRO x,y,page
 ;args DL=x,DH=y
+    MOV DH,y
+    MOV DL,x
+    MOV BH,page
     MOV AH,02h
     INT 10h 
 ENDM 

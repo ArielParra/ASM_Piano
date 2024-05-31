@@ -42,7 +42,7 @@ str_piano8  DB    "                                         |  |        |  |    
 str_piano9  DB    "                                          ||          | |                     ",'$'
 str_piano10  DB   "                                                       ||                     ",'$'
 
-str_integrantes1 DB  "Inegrantes: ", '$'
+str_integrantes1 DB  "Integrantes: ", '$'
 str_integrantes2 DB  "Miguel Angel Batres Luna",'$'
 str_integrantes3 DB  "Ariel Emilio Parra Martinez",'$'
 str_integrantes4 DB  "Diego Ivan Salas Pedroza",'$'
@@ -57,10 +57,10 @@ str_juego   DB "Presione ESC para salir", '$'
 
 ;menu de canciones
 str_songMenu1  DB "REPERTORIO",'$'
-str_songMenu2  DB "1. Mario",'$'
-str_songMenu3  DB "2. Zelda SOT",'$'
-str_songMenu4  DB "3. Fur Elise",'$'
-str_songMenu5  DB "4. Despacito",'$'
+str_songMenu2  DB "Mario",'$'
+str_songMenu3  DB "Zelda SOT",'$'
+str_songMenu4  DB "Fur Elise",'$'
+str_songMenu5  DB "Despacito",'$'
 str_songMenu6  DB "ESC. salir",'$'
 str_songMenu7  DB  "       |\",'$'
 str_songMenu8  DB  "    |--|/--------------------,~\-----------(_)------|~~~~|----,~\---------|",'$'
@@ -70,9 +70,37 @@ str_songMenu11 DB  "    |(-|-)-4-------_|---_|--\|-----|~~~~|--\|---------------
 str_songMenu12 DB  "    |-`|'---------(_)--(_)--------_|---_|--------------------------/|-----|",'$'
 str_songMenu13 DB  "      \|                         (_)--(_)                          \|      ",'$'
 
-;Colores
-negro       DB  0
-blanco      DB  15
+;Colors
+black       DB  0
+darkBlue    DB  1
+green       DB  2
+lightBlue   DB  3
+red         DB  4
+purple      DB  5
+brown       DB  6
+gray        DB  7
+darkGray    DB  8
+blue        DB  9
+LimeGreen   DB  10
+skyBlue     DB  11
+lightRed    DB  12
+pink        DB  13
+yellow      DB  14
+white       DB  15
+
+;notes
+note_C          DB  "DO",'$'
+note_CSharp     DB  "DO#",'$'
+note_D          DB  "RE",'$'
+note_DSharp    DB  "RE#",'$'
+note_E          DB  "MI",'$'
+note_F          DB  "FA",'$'
+note_FSharp    DB  "FA#",'$'
+note_G          DB  "SOL",'$'
+note_GSharp    DB  "SOL#",'$'
+note_A          DB  "LA",'$'
+note_ASharp    DB  "LA#",'$'
+note_B          DB  "SI",'$'
 
 ;note constants
 note_C3       equ 9121; Do 
@@ -155,7 +183,7 @@ main ENDP
 
 piano PROC
     CALL pantallaPiano
-    MOV int16_delay,400;ms 
+    MOV int16_delay,200;ms 
     while1:
         
         kbhit 
@@ -200,28 +228,29 @@ piano PROC
         
         switch_numbers:
             c_1:
+                JMP break1
+            c_2:
                 MOV BX, note_Csharp3
                 CALL beep_proc
                 JMP break1
-            c_2:
+            c_3:
                 MOV BX, note_Dsharp3
                 CALL beep_proc
                 JMP break1
-            c_3:
-                JMP break1
             c_4:
+                JMP break1
+            c_5:
                 MOV BX, note_Fsharp3
                 CALL beep_proc
                 JMP break1
-            c_5:
+            c_6:
                 MOV BX, note_Gsharp3
                 CALL beep_proc
                 JMP break1
-            c_6:
+            c_7:
                 MOV BX, note_Asharp3
                 CALL beep_proc
                 JMP break1
-            c_7:
             c_8:
             c_9:
             c_0:
@@ -265,28 +294,29 @@ piano PROC
             p:
                 JMP break2
             a:
+                JMP break2
+            s:
                 MOV BX, note_Csharp4
                 CALL beep_proc
                 JMP break2
-            s:
+            d:
                 MOV BX, note_Dsharp4
                 CALL beep_proc
                 JMP break2
-            d:
-                JMP break2
             f:
+                JMP break2
+            g:
                 MOV BX, note_Fsharp4
                 CALL beep_proc
                 JMP break2
-            g:
+            h:
                 MOV BX, note_Gsharp4
                 CALL beep_proc
                 JMP break2
-            h:
+            j:
                 MOV BX, note_Asharp4
                 CALL beep_proc
                 JMP break2
-            j:
             k:
             l:
                 JMP break2
@@ -378,29 +408,36 @@ menu PROC
     MOV AH,00
     MOV AL,10h ;Modo de video
     INT 10h
-
+    
     ;Imprimir el titulo del menu de inicio
-    MOV BH,0
-    MOV DH,3
-    MOV DL,0
-    MOV AH,02h
-    INT 10h
-    print str_titulo1
-    endl
-    print str_titulo2
-    endl
-    print str_titulo3
-    endl
-    print str_titulo4
-    endl
-    print str_titulo5
-    endl
-    print str_titulo6
-    endl
-    print str_titulo7
-    endl
-    print str_titulo8
-    ;endl
+
+    MOV BL,skyBlue
+    gotoxy 0,3,0
+    LEA SI,str_titulo1
+    CALL imprimirColor
+    gotoxy 0,4,0
+    LEA SI,str_titulo2
+    CALL imprimirColor
+    gotoxy 0,5,0
+    LEA SI,str_titulo3
+    CALL imprimirColor    
+    gotoxy 0,6,0
+    LEA SI,str_titulo4
+    CALL imprimirColor
+
+    MOV BL,green
+    gotoxy 0,7,0
+    LEA SI,str_titulo5
+    CALL imprimirColor
+    gotoxy 0,8,0
+    LEA SI,str_titulo6
+    CALL imprimirColor
+    gotoxy 0,9,0
+    LEA SI,str_titulo7
+    CALL imprimirColor
+    gotoxy 0,10,0
+    LEA SI,str_titulo8
+    CALL imprimirColor
 
     MOV BH,0
     MOV DH,13
@@ -427,55 +464,36 @@ menu PROC
     endl
     print str_piano10  
     
-    MOV BH,0
-    MOV DH,15
-    MOV DL,5
-    MOV AH,02h
-    INT 10h 
-    print str_menu1
-    MOV BH,0
-    MOV DH,16
-    MOV DL,5
-    MOV AH,02h
-    INT 10h 
-    print str_menu2
-    MOV BH,0
-    MOV DH,17
-    MOV DL,5
-    MOV AH,02h
-    INT 10h 
-    print str_menu3
-    MOV BH,0
-    MOV DH,18
-    MOV DL,5
-    MOV AH,02h
-    INT 10h 
-    print str_menu4
+    MOV BL,darkBlue
+    gotoxy 5,15,0
+    LEA SI,str_menu1
+    CALL imprimirColor
+    MOV BL,white
+    gotoxy 5,16,0
+    LEA SI,str_menu2
+    CALL imprimirColor
+    gotoxy 5,17,0
+    LEA SI,str_menu3
+    CALL imprimirColor
+    MOV BL,gray
+    gotoxy 5,18,0
+    LEA SI,str_menu4
+    CALL imprimirColor
 
-    MOV BH,0
-    MOV DH,3
-    MOV DL,50
-    MOV AH,02h
-    INT 10h 
-    print str_integrantes1
-    MOV BH,0
-    MOV DH,4
-    MOV DL,45
-    MOV AH,02h
-    INT 10h 
-    print str_integrantes2
-    MOV BH,0
-    MOV DH,5
-    MOV DL,45
-    MOV AH,02h
-    INT 10h
-    print str_integrantes3
-    MOV BH,0
-    MOV DH,6
-    MOV DL,45
-    MOV AH,02h
-    INT 10h
-    print str_integrantes4
+    MOV BL,red
+    gotoxy 55,3,0
+    LEA SI,str_integrantes1
+    CALL imprimirColor
+    MOV BL,white
+    gotoxy 48,4,0
+    LEA SI,str_integrantes2
+    CALL imprimirColor
+    gotoxy 48,5,0
+    LEA SI,str_integrantes3
+    CALL imprimirColor
+    gotoxy 48,6,0
+    LEA SI,str_integrantes4
+    CALL imprimirColor
     RET
 menu ENDP
 
@@ -483,6 +501,7 @@ pantallaPiano PROC
     MOV AH,05 ;Cambiar de pagina
     MOV AL,01 
     INT 10h
+
     endl
     endl
     print str_juego
@@ -491,12 +510,12 @@ pantallaPiano PROC
     MOV xpos, 5
     MOV y2pos, 20
     MOV x2pos, 74
-    scrollUP ypos,xpos,y2pos,x2pos,blanco  
+    scrollUP ypos,xpos,y2pos,x2pos,white
 
     DEC xpos
     pintarLineas:
         ADD xpos,5
-        scrollUP ypos,xpos,y2pos,xpos,negro
+        scrollUP ypos,xpos,y2pos,xpos,black
         CMP xpos, 74
         JNE pintarLineas  
     
@@ -504,34 +523,168 @@ pantallaPiano PROC
     MOV x2pos,8
     MOV y2pos,13
     ADD x2pos,2
-    scrollUP ypos,xpos,y2pos,x2pos,negro
+    scrollUP ypos,xpos,y2pos,x2pos,black
+    gotoxy 9,ypos,1
+    putch '2'
+
     ADD xpos,5
     ADD x2pos,5
-    scrollUP ypos,xpos,y2pos,x2pos,negro
+    scrollUP ypos,xpos,y2pos,x2pos,black
+    gotoxy 14,ypos,1
+    putch '3'
+
     ADD xpos,10
     ADD x2pos,10
-    scrollUP ypos,xpos,y2pos,x2pos,negro
+    scrollUP ypos,xpos,y2pos,x2pos,black
+    gotoxy 24,ypos,1
+    putch '5'
+
     ADD xpos,5
     ADD x2pos,5
-    scrollUP ypos,xpos,y2pos,x2pos,negro
+    scrollUP ypos,xpos,y2pos,x2pos,black
+    gotoxy 29,ypos,1
+    putch '6'
+
     ADD xpos,5
     ADD x2pos,5
-    scrollUP ypos,xpos,y2pos,x2pos,negro
+    scrollUP ypos,xpos,y2pos,x2pos,black
+    gotoxy 34,ypos,1
+    putch '7'
+
     ADD xpos,10
     ADD x2pos,10
-    scrollUP ypos,xpos,y2pos,x2pos,negro
+    scrollUP ypos,xpos,y2pos,x2pos,black
+    gotoxy 44,ypos,1
+    putch 'S'
+
     ADD xpos,5
     ADD x2pos,5
-    scrollUP ypos,xpos,y2pos,x2pos,negro
+    scrollUP ypos,xpos,y2pos,x2pos,black
+    gotoxy 49,ypos,1
+    putch 'D'
+
     ADD xpos,10
     ADD x2pos,10
-    scrollUP ypos,xpos,y2pos,x2pos,negro
+    scrollUP ypos,xpos,y2pos,x2pos,black
+    gotoxy 59,ypos,1
+    putch 'G'
+
     ADD xpos,5
     ADD x2pos,5
-    scrollUP ypos,xpos,y2pos,x2pos,negro
+    scrollUP ypos,xpos,y2pos,x2pos,black
+    gotoxy 64,ypos,1
+    putch 'H'
+    
     ADD xpos,5
     ADD x2pos,5
-    scrollUP ypos,xpos,y2pos,x2pos,negro
+    scrollUP ypos,xpos,y2pos,x2pos,black
+    gotoxy 69,ypos,1
+    putch 'J'
+
+    MOV BL,LimeGreen
+    gotoxy 8,4,1
+    LEA SI,note_CSharp
+    CALL imprimirColor
+    gotoxy 13,4,1
+    LEA SI,note_DSharp
+    CALL imprimirColor
+    gotoxy 23,4,1
+    LEA SI,note_FSharp
+    CALL imprimirColor
+    gotoxy 28,4,1
+    LEA SI,note_GSharp
+    CALL imprimirColor
+    gotoxy 33,4,1
+    LEA SI,note_ASharp
+    CALL imprimirColor
+    gotoxy 6,22,1
+    LEA SI,note_C
+    CALL imprimirColor
+    gotoxy 11,22,1
+    LEA SI,note_D
+    CALL imprimirColor
+    gotoxy 16,22,1
+    LEA SI,note_E
+    CALL imprimirColor
+    gotoxy 21,22,1
+    LEA SI,note_F
+    CALL imprimirColor
+    gotoxy 26,22,1
+    LEA SI,note_G
+    CALL imprimirColor
+    gotoxy 31,22,1
+    LEA SI,note_A
+    CALL imprimirColor
+    gotoxy 36,22,1
+    LEA SI,note_B
+    CALL imprimirColor
+
+    MOV BL,lightBlue
+    gotoxy 43,4,1
+    LEA SI,note_CSharp
+    CALL imprimirColor
+    gotoxy 48,4,1
+    LEA SI,note_DSharp
+    CALL imprimirColor
+    gotoxy 58,4,1
+    LEA SI,note_FSharp
+    CALL imprimirColor
+    gotoxy 63,4,1
+    LEA SI,note_GSharp
+    CALL imprimirColor
+    gotoxy 68,4,1
+    LEA SI,note_ASharp
+    CALL imprimirColor
+    gotoxy 41,22,1
+    LEA SI,note_C
+    CALL imprimirColor
+    gotoxy 46,22,1
+    LEA SI,note_D
+    CALL imprimirColor
+    gotoxy 51,22,1
+    LEA SI,note_E
+    CALL imprimirColor
+    gotoxy 56,22,1
+    LEA SI,note_F
+    CALL imprimirColor
+    gotoxy 61,22,1
+    LEA SI,note_G
+    CALL imprimirColor
+    gotoxy 66,22,1
+    LEA SI,note_A
+    CALL imprimirColor
+    gotoxy 71,22,1
+    LEA SI,note_B
+    CALL imprimirColor
+
+    gotoxy 6,21,1
+    putchC 'Q',white,1,1
+    gotoxy 11,21,1
+    putchC 'W',white,1,1
+    gotoxy 16,21,1
+    putchC 'E',white,1,1
+    gotoxy 21,21,1
+    putchC 'R',white,1,1
+    gotoxy 26,21,1
+    putchC 'T',white,1,1
+    gotoxy 31,21,1
+    putchC 'Y',white,1,1
+    gotoxy 36,21,1
+    putchC 'U',white,1,1
+    gotoxy 41,21,1
+    putchC 'Z',white,1,1
+    gotoxy 46,21,1
+    putchC 'X',white,1,1
+    gotoxy 51,21,1
+    putchC 'C',white,1,1
+    gotoxy 56,21,1
+    putchC 'V',white,1,1
+    gotoxy 61,21,1
+    putchC 'B',white,1,1
+    gotoxy 66,21,1
+    putchC 'N',white,1,1
+    gotoxy 71,21,1
+    putchC 'M',white,1,1
     RET
 pantallaPiano ENDP
 
@@ -540,60 +693,143 @@ menuCanciones PROC
     MOV AL,01
     INT 10h
 
-    MOV BH,01
-    MOV DH,5
-    MOV DL,35
-    MOV AH,02
-    INT 10h
-    print str_songMenu1
-    MOV BH,01
-    MOV DH,6
-    MOV DL,35
-    MOV AH,02
-    INT 10h
-    print str_songMenu2
-    MOV BH,01
-    MOV DH,7
-    MOV DL,35
-    MOV AH,02
-    INT 10h
-    print str_songMenu3
-    MOV BH,01
-    MOV DH,8
-    MOV DL,35
-    MOV AH,02
-    INT 10h
-    print str_songMenu4
-    MOV BH,01
-    MOV DH,9
-    MOV DL,35
-    MOV AH,02
-    INT 10h
-    print str_songMenu5
-    MOV BH,01
-    MOV DH,10
-    MOV DL,35
-    MOV AH,02
-    INT 10h
-    print str_songMenu6
-    endl
-    endl
-    endl
-    endl
-    print str_songMenu7
-    endl
-    print str_songMenu8
-    endl
-    print str_songMenu9
-    endl
-    print str_songMenu10
-    endl
-    print str_songMenu11
-    endl
-    print str_songMenu12
-    endl
-    print str_songMenu13
+     
+    gotoxy 30,4,1
+    putchC '*',yellow,1,1 
+    gotoxy 30,6,1
+    putchC '*',yellow,1,1 
+    gotoxy 30,9,1
+    putchC '*',yellow,1,1 
+    gotoxy 30,12,1
+    putchC '*',yellow,1,1 
+    gotoxy 33,3,1
+    putchC '*',yellow,1,1 
+    gotoxy 38,3,1
+    putchC '*',yellow,1,1 
+    gotoxy 43,3,1
+    putchC '*',yellow,1,1 
+    gotoxy 48,3,1
+    putchC '*',yellow,1,1 
+    gotoxy 51,4,1
+    putchC '*',yellow,1,1 
+    gotoxy 51,6,1
+    putchC '*',yellow,1,1 
+    gotoxy 51,9,1
+    putchC '*',yellow,1,1 
+    gotoxy 51,12,1
+    putchC '*',yellow,1,1 
+
+    MOV xpos,32
+    MOV x2pos,49
+    MOV ypos,4
+    borde:
+        gotoxy xpos,ypos,1
+        putchC 186,pink,1,1 ;­­║­­
+        gotoxy x2pos,ypos,1
+        putchC 186,pink,1,1 ;║­­­
+        INC ypos
+        CMP ypos,13
+        JNE borde
+    gotoxy xpos,4,1
+    putchC 201,pink,1,1 ;╔
+    gotoxy x2pos,4,1
+    putchC 187,pink,1,1 ;╗­­­
+    gotoxy xpos,6,1
+    putchC 204,pink,1,1 ;╠
+    gotoxy x2pos,6,1
+    putchC 185,pink,1,1 ;╣
+    gotoxy xpos,13,1
+    putchC 200,pink,1,1 ;╚
+    gotoxy x2pos,13,1
+    putchC 188,pink,1,1 ;╝
+    gotoxy 34,4,1
+    putchC 205,pink,14,1 ;═
+    gotoxy 34,6,1
+    putchC 205,pink,14,1 ;═
+    gotoxy 34,11,1
+    putchC 205,pink,14,1 ;═
+    gotoxy 33,12,1
+    putchC 205,pink,16,1 ;═
+    gotoxy 34,7,1
+    putchC 175,blue,1,1 ;»
+    gotoxy 34,8,1
+    putchC 175,blue,1,1 ;»
+    gotoxy 34,9,1
+    putchC 175,blue,1,1 ;»
+    gotoxy 34,10,1
+    putchC 175,blue,1,1 ;»
+    gotoxy 36,5,1
+    MOV BL,skyBlue
+    LEA SI,str_songMenu1
+    CALL imprimirColor
+    gotoxy 36,7,1
+    putchC '1',LimeGreen,1,1
+    gotoxy 38,7,1
+    MOV BL,red
+    LEA SI,str_songMenu2
+    CALL imprimirColor
+    gotoxy 36,8,1
+    putchC '2',LimeGreen,1,1
+    gotoxy 38,8,1
+    MOV BL,green
+    LEA SI,str_songMenu3
+    CALL imprimirColor
+    gotoxy 36,9,1
+    putchC '3',LimeGreen,1,1
+    gotoxy 38,9,1
+    MOV BL,gray
+    LEA SI,str_songMenu4
+    CALL imprimirColor
+    gotoxy 36,10,1
+    putchC '4',LimeGreen,1,1
+    gotoxy 38,10,1
+    MOV BL,lightBlue
+    LEA SI,str_songMenu5
+    CALL imprimirColor
+    gotoxy 36,12,1
+    MOV BL,white
+    LEA SI,str_songMenu6
+    CALL imprimirColor
+    
+    MOV BL,gray
+    gotoxy 0,16,1
+    LEA SI,str_songMenu7
+    CALL imprimirColor
+    gotoxy 0,17,1
+    LEA SI,str_songMenu8
+    CALL imprimirColor
+    gotoxy 0,18,1
+    LEA SI,str_songMenu9
+    CALL imprimirColor
+    gotoxy 0,19,1
+    LEA SI,str_songMenu10
+    CALL imprimirColor
+    gotoxy 0,20,1
+    LEA SI,str_songMenu11
+    CALL imprimirColor
+    gotoxy 0,21,1
+    LEA SI,str_songMenu12
+    CALL imprimirColor
+    gotoxy 0,22,1
+    LEA SI,str_songMenu13
+    CALL imprimirColor
     RET
 menuCanciones ENDP
+
+imprimirColor PROC
+    imprimir:
+    MOV AH,09
+    MOV AL,[SI]
+    MOV CX,1
+    INT 10h
+    INC SI
+    INC DL
+    MOV AH,02
+    INT 10h
+    MOV AL,[SI]
+    CMP AL,'$'
+    JNE imprimir
+    RET
+imprimirColor ENDP
 
 END;code segment
