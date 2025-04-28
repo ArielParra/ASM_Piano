@@ -25,13 +25,13 @@ putchC MACRO char_ch,color,n,page
 ENDM
 getchar MACRO 
     ;servicio 01 de la int 21h
-    ;entrada de caracter con echo
+    ;echo character input
     MOV AH,01h  ;return en AL
     INT 21h
 ENDM 
 gets MACRO buff_str 
-;          TamMax,longUsada,esa longUsada DUPlicalos con el valor '?' 
-;buffer DB 255   ,    ?    ,255 DUP(?); reserva un buffer de 255 chars
+;         MaxSize,usedSize, DUPlicated value '?' 
+;buffer DB 255   ,    ?    ,255 DUP(?);  255 char buffer
     MOV AH,0Ah      
     LEA DX, buff_str
     INT 21h
@@ -39,14 +39,14 @@ ENDM
 puts MACRO buff_str
         XOR BX, BX
 		MOV BL, buff_str[1]
-		MOV buff_str[BX+2], '$';agrega terminador de cadena
-		;MOV DX, OFFSET buff_str + 2; apunta al string del buffer
+		MOV buff_str[BX+2], '$'; adds str terminator
+        ;MOV DX, OFFSET buff_str[2]; points to the string in the buffer
 		LEA DX, buff_str + 2
 		MOV AH, 09h
 		int 21h
 ENDM
 pause MACRO
-    MOV AH,08h;entrada char sin echo
+    MOV AH,08h;char input w/o echo
     INT 21h  
 ENDM    
 exit MACRO
@@ -61,20 +61,20 @@ kbhit MACRO
     INT 16h
 ENDM
 
-getch MACRO ;return en AL
+getch MACRO ;returns in AL
     MOV AH,00h
     INT 16h
 ENDM
 
 drawPixel MACRO 
-;int8_color int8_pagina int16_x int16_y
+;int8_color int8_pag int16_x int16_y
 ;Video mode 13h
-    ;servicio 0Ch de la int 10h
+    ;service 0Ch of int 10h
     MOV AH,0Ch  ;
-    ;MOV AL,int8_color; mover AL el color
-    ;MOV BH,int8_pagina   ; BH pagina
-    ;MOV CX,int16_x  ; columnas
-    ;MOV DX,int16_y  ; filas
+    ;MOV AL,int8_color; move AL color
+    ;MOV BH,int8_pag  ; BH page
+    ;MOV CX,int16_x   ; column
+    ;MOV DX,int16_y   ; rows
     INT 10h
 ENDM   
 setVideo MACRO int8_modo
@@ -96,8 +96,8 @@ setBG MACRO
     MOV BH,24h ;attribute 
     MOV CH,0   ;row upper left corner 
     MOV CL,0   ;col upper left corner
-    MOV DH,24  ;row lower right corner ;25 caracteres
-    MOV DL,79  ;col lower right corner ;80 caracteres
+    MOV DH,24  ;row lower right corner ;25 chars
+    MOV DL,79  ;col lower right corner ;80 chars
     INT 10h       
 ENDM 
 gotoxy MACRO x,y,page
@@ -110,15 +110,15 @@ gotoxy MACRO x,y,page
 ENDM 
 drawBlocks MACRO
 ;args
-;BH = pagina
-;CX = veces a escribir
+;BH = page
+;CX = times to write
     MOV DL,01h;foreground
     MOV DH,01h;background
     MOV AH,09h
-    MOV AL,219;caracter 
+    MOV AL,219;character Block 
     MOV BL,DH
     SHL BL,4
-    OR  BL,DL;rango  color
+    OR  BL,DL;color range
     INT 10h    
 ENDM
 
@@ -129,7 +129,7 @@ absolut MACRO
     ; b = BX = X >> sizeof(int) ; 16 bits es 15, 0 a 15 = 16
     ; a = AX 
     MOV BX,AX
-    SAR BX,15;shift aritmetico pq se manejan signos
+    SAR BX,15;Arithmetic shift cause of the sign
     XOR AX,BX
     SUB AX,BX
 ENDM 
@@ -155,14 +155,15 @@ min MACRO
     AND AX,DX
     ADD AX,BX
 ENDM
-;max y min inspirados en:
-porDiez MACRO
+
+byTen MACRO; 14 cpu cycles insted of 118 cycles from MUL 10
 ;args DX
 ;return DX
-    ;n<<3 + n<<1 = n*8 + n*2 = n*10  (ingenio propio :p)
+    ;n<<3 + n<<1 = n*8 + n*2 = n*10  
+    ;(Ariel Parra invention to multiply by 10)
     PUSH AX
     PUSH CX
-    MOV CL,03h
+    MOV CL,03h; Fixes error in dosbox
     MOV AX,DX
     SHL DX,CL
     SHL AX,1
@@ -177,15 +178,15 @@ sleep MACRO int16_milliseconds
          MOV BX,10
          XOR DX,DX
          DIV BX
-         porDiez;DX*10
+         byTen;DX*10
          MOV CX,DX
          XOR DX,DX
          DIV BX
          ADD CX,DX 
          MOV DX,CX 
-         porDiez;
-         porDiez;
-         porDiez;DX*1000
+         byTen;
+         byTen;
+         byTen;DX*1000
          MOV CX,AX 
          XOR   AL,AL
          MOV   AH, 86H

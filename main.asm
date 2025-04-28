@@ -21,7 +21,7 @@ jumpTable_jukebox DW case_default,case_song_1,case_song_2,case_song_3,case_song_
 jumpTable_numbers DW c_0,c_1,c_2,c_3,c_4,c_5,c_6,c_7,c_8,c_9,c_default;
 jumpTable_letters DW a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y,z,default;
 
-;menu principal
+;main menu
 str_titulo1    DB    "    ___   ___     _     _  _    ___  ",'$'
 str_titulo2    DB    "   | _ \ |_ _|   /_\   | \| |  / _ \ ",'$' 
 str_titulo3    DB    "   |  _/  | |   / _ \  | .` | | (_) |",'$'
@@ -42,26 +42,26 @@ str_piano8  DB    "                                         |  |        |  |    
 str_piano9  DB    "                                          ||          | |                     ",'$'
 str_piano10  DB   "                                                       ||                     ",'$'
 
-str_integrantes1 DB  "Integrantes: ", '$'
-str_integrantes2 DB  "Miguel Angel Batres Luna",'$'
-str_integrantes3 DB  "Ariel Emilio Parra Martinez",'$'
-str_integrantes4 DB  "Diego Ivan Salas Pedroza",'$'
+str_integrantes1 DB  "Credits: ", '$'
+str_integrantes2 DB  "Miguel Batres ",'$'
+str_integrantes3 DB  "Ariel Parra ",'$'
+str_integrantes4 DB  "Diego Salas ",'$'
 
-str_menu1   DB  "Selecciona una opcion: ",'$'
+str_menu1   DB  "Select an option: ",'$'
 str_menu2   DB  "1. Piano",'$'
-str_menu3   DB  "2. Caja Musical",'$'
-str_menu4   DB  "ESC. Salir",'$'
+str_menu3   DB  "2. Jukebox",'$'
+str_menu4   DB  "ESC. exit",'$'
 
-;Pantalla piano
-str_juego   DB "Presione ESC para salir", '$'
+;Piano Screen
+str_juego   DB "Press ESC to exit", '$'
 
-;menu de canciones
-str_songMenu1  DB "REPERTORIO",'$'
+;Jukebox Screen
+str_songMenu1  DB "Jukebox",'$'
 str_songMenu2  DB "Mario",'$'
 str_songMenu3  DB "Zelda SOT",'$'
 str_songMenu4  DB "Fur Elise",'$'
 str_songMenu5  DB "Despacito",'$'
-str_songMenu6  DB "ESC. salir",'$'
+str_songMenu6  DB "ESC. exit",'$'
 str_songMenu7  DB  "       |\",'$'
 str_songMenu8  DB  "    |--|/--------------------,~\-----------(_)------|~~~~|----,~\---------|",'$'
 str_songMenu9  DB  "    |--|---4-----------------|~'------------|------_|---_|----|~----------|",'$'
@@ -141,19 +141,19 @@ note_Asharp5  equ 1279; La sostenido
 note_B5       equ 1207; Si
 note_C6       equ 1140; Do
 
-
 .code
 MOV AX,@DATA
 MOV DS,AX
 
+; main program
 main PROC
     while0:
         CALL menu
         getch
         XOR AH,AH
-        CMP AL,1Bh;'esc' 
+        CMP AL,1Bh;'ESC' 
         JNE et_continue0
-        exit;salir presionando esc
+        exit;exit by pressing ESC
 
         et_continue0:
         SUB AL,'0';to number
@@ -182,7 +182,7 @@ main PROC
 main ENDP
 
 piano PROC
-    CALL pantallaPiano
+    CALL pianoScreen
     MOV int16_delay,200;ms 
     while1:
         
@@ -199,30 +199,30 @@ piano PROC
         et_continue1:
 
         CMP AL, '9'
-        JG et_validarLetras
+        JG et_validateLetters
 
         et_validarNumeros:
             SUB AL, '0'
             CMP AX,10
-            JL et_numerosValidados
+            JL et_validNumbers
             MOV AX,10;default
 
-            et_numerosValidados:
+            et_validNumbers:
                 SHL AX,1
                 LEA BX,jumpTable_numbers
-                ADD BX,AX;indice ya validado
+                ADD BX,AX;idx already validated
                 JMP [BX]
             
-        et_validarLetras:
+        et_validateLetters:
             SUB AL, 'a'         
-            ;validar rango
+            ;validate range
             CMP AX,26; 'z' - 'a'
             JL et_letrasValidadas
             MOV AX,26;default
         
             et_letrasValidadas:
                 SHL AX,1
-                LEA BX,jumpTable_Letters
+                LEA BX,jumpTable_letters
                 ADD BX,AX
                 JMP [BX]
         
@@ -364,12 +364,12 @@ RET
 beep_proc ENDP
 
 jukebox PROC
-    CALL menuCanciones
+    CALL jukeboxScreen
     while2:
         getch
         XOR AH,AH
           
-        CMP AL,1Bh;'esc' 
+        CMP AL,1Bh;'ESC' 
         JNE et_continue2
         JMP eliwh2
         
@@ -382,7 +382,7 @@ jukebox PROC
         et_salto_validado:
             SHL AX,1
             LEA BX,jumpTable_jukebox
-            ADD BX,AX;indice ya validado
+            ADD BX,AX;idx already validated
             JMP [BX]
 
         switch_jukebox:
@@ -406,38 +406,38 @@ jukebox ENDP
 
 menu PROC
     MOV AH,00
-    MOV AL,10h ;Modo de video
+    MOV AL,10h ;video mode
     INT 10h
     
-    ;Imprimir el titulo del menu de inicio
+    ;print title
 
     MOV BL,skyBlue
     gotoxy 0,3,0
     LEA SI,str_titulo1
-    CALL imprimirColor
+    CALL printColor
     gotoxy 0,4,0
     LEA SI,str_titulo2
-    CALL imprimirColor
+    CALL printColor
     gotoxy 0,5,0
     LEA SI,str_titulo3
-    CALL imprimirColor    
+    CALL printColor    
     gotoxy 0,6,0
     LEA SI,str_titulo4
-    CALL imprimirColor
+    CALL printColor
 
     MOV BL,green
     gotoxy 0,7,0
     LEA SI,str_titulo5
-    CALL imprimirColor
+    CALL printColor
     gotoxy 0,8,0
     LEA SI,str_titulo6
-    CALL imprimirColor
+    CALL printColor
     gotoxy 0,9,0
     LEA SI,str_titulo7
-    CALL imprimirColor
+    CALL printColor
     gotoxy 0,10,0
     LEA SI,str_titulo8
-    CALL imprimirColor
+    CALL printColor
 
     MOV BH,0
     MOV DH,13
@@ -467,37 +467,37 @@ menu PROC
     MOV BL,darkBlue
     gotoxy 5,15,0
     LEA SI,str_menu1
-    CALL imprimirColor
+    CALL printColor
     MOV BL,white
     gotoxy 5,16,0
     LEA SI,str_menu2
-    CALL imprimirColor
+    CALL printColor
     gotoxy 5,17,0
     LEA SI,str_menu3
-    CALL imprimirColor
+    CALL printColor
     MOV BL,gray
     gotoxy 5,18,0
     LEA SI,str_menu4
-    CALL imprimirColor
+    CALL printColor
 
     MOV BL,red
-    gotoxy 55,3,0
+    gotoxy 48,3,0
     LEA SI,str_integrantes1
-    CALL imprimirColor
+    CALL printColor
     MOV BL,white
     gotoxy 48,4,0
     LEA SI,str_integrantes2
-    CALL imprimirColor
+    CALL printColor
     gotoxy 48,5,0
     LEA SI,str_integrantes3
-    CALL imprimirColor
+    CALL printColor
     gotoxy 48,6,0
     LEA SI,str_integrantes4
-    CALL imprimirColor
+    CALL printColor
     RET
 menu ENDP
 
-pantallaPiano PROC
+pianoScreen PROC
     MOV AH,05 ;Cambiar de pagina
     MOV AL,01 
     INT 10h
@@ -513,11 +513,11 @@ pantallaPiano PROC
     scrollUP ypos,xpos,y2pos,x2pos,white
 
     DEC xpos
-    pintarLineas:
+    printLines:
         ADD xpos,5
         scrollUP ypos,xpos,y2pos,xpos,black
         CMP xpos, 74
-        JNE pintarLineas  
+        JNE printLines  
     
     MOV xpos,8
     MOV x2pos,8
@@ -584,78 +584,78 @@ pantallaPiano PROC
     MOV BL,LimeGreen
     gotoxy 8,4,1
     LEA SI,note_CSharp
-    CALL imprimirColor
+    CALL printColor
     gotoxy 13,4,1
     LEA SI,note_DSharp
-    CALL imprimirColor
+    CALL printColor
     gotoxy 23,4,1
     LEA SI,note_FSharp
-    CALL imprimirColor
+    CALL printColor
     gotoxy 28,4,1
     LEA SI,note_GSharp
-    CALL imprimirColor
+    CALL printColor
     gotoxy 33,4,1
     LEA SI,note_ASharp
-    CALL imprimirColor
+    CALL printColor
     gotoxy 6,22,1
     LEA SI,note_C
-    CALL imprimirColor
+    CALL printColor
     gotoxy 11,22,1
     LEA SI,note_D
-    CALL imprimirColor
+    CALL printColor
     gotoxy 16,22,1
     LEA SI,note_E
-    CALL imprimirColor
+    CALL printColor
     gotoxy 21,22,1
     LEA SI,note_F
-    CALL imprimirColor
+    CALL printColor
     gotoxy 26,22,1
     LEA SI,note_G
-    CALL imprimirColor
+    CALL printColor
     gotoxy 31,22,1
     LEA SI,note_A
-    CALL imprimirColor
+    CALL printColor
     gotoxy 36,22,1
     LEA SI,note_B
-    CALL imprimirColor
+    CALL printColor
 
     MOV BL,lightBlue
     gotoxy 43,4,1
     LEA SI,note_CSharp
-    CALL imprimirColor
+    CALL printColor
     gotoxy 48,4,1
     LEA SI,note_DSharp
-    CALL imprimirColor
+    CALL printColor
     gotoxy 58,4,1
     LEA SI,note_FSharp
-    CALL imprimirColor
+    CALL printColor
     gotoxy 63,4,1
     LEA SI,note_GSharp
-    CALL imprimirColor
+    CALL printColor
     gotoxy 68,4,1
     LEA SI,note_ASharp
-    CALL imprimirColor
+    CALL printColor
     gotoxy 41,22,1
     LEA SI,note_C
-    CALL imprimirColor
+    CALL printColor
     gotoxy 46,22,1
     LEA SI,note_D
-    CALL imprimirColor
+    CALL printColor
     gotoxy 51,22,1
     LEA SI,note_E
-    CALL imprimirColor
+    CALL printColor
     gotoxy 56,22,1
     LEA SI,note_F
-    CALL imprimirColor
+    CALL printColor
     gotoxy 61,22,1
     LEA SI,note_G
-    CALL imprimirColor
+    CALL printColor
     gotoxy 66,22,1
     LEA SI,note_A
-    CALL imprimirColor
+    CALL printColor
     gotoxy 71,22,1
     LEA SI,note_B
-    CALL imprimirColor
+    CALL printColor
 
     gotoxy 6,21,1
     putchC 'Q',white,1,1
@@ -686,9 +686,9 @@ pantallaPiano PROC
     gotoxy 71,21,1
     putchC 'M',white,1,1
     RET
-pantallaPiano ENDP
+pianoScreen ENDP
 
-menuCanciones PROC
+jukeboxScreen PROC
     MOV AH,05 ;Cambiar de pagina
     MOV AL,01
     INT 10h
@@ -761,62 +761,62 @@ menuCanciones PROC
     gotoxy 36,5,1
     MOV BL,skyBlue
     LEA SI,str_songMenu1
-    CALL imprimirColor
+    CALL printColor
     gotoxy 36,7,1
     putchC '1',LimeGreen,1,1
     gotoxy 38,7,1
     MOV BL,red
     LEA SI,str_songMenu2
-    CALL imprimirColor
+    CALL printColor
     gotoxy 36,8,1
     putchC '2',LimeGreen,1,1
     gotoxy 38,8,1
     MOV BL,green
     LEA SI,str_songMenu3
-    CALL imprimirColor
+    CALL printColor
     gotoxy 36,9,1
     putchC '3',LimeGreen,1,1
     gotoxy 38,9,1
     MOV BL,gray
     LEA SI,str_songMenu4
-    CALL imprimirColor
+    CALL printColor
     gotoxy 36,10,1
     putchC '4',LimeGreen,1,1
     gotoxy 38,10,1
     MOV BL,lightBlue
     LEA SI,str_songMenu5
-    CALL imprimirColor
+    CALL printColor
     gotoxy 36,12,1
     MOV BL,white
     LEA SI,str_songMenu6
-    CALL imprimirColor
+    CALL printColor
     
     MOV BL,gray
     gotoxy 0,16,1
     LEA SI,str_songMenu7
-    CALL imprimirColor
+    CALL printColor
     gotoxy 0,17,1
     LEA SI,str_songMenu8
-    CALL imprimirColor
+    CALL printColor
     gotoxy 0,18,1
     LEA SI,str_songMenu9
-    CALL imprimirColor
+    CALL printColor
     gotoxy 0,19,1
     LEA SI,str_songMenu10
-    CALL imprimirColor
+    CALL printColor
     gotoxy 0,20,1
     LEA SI,str_songMenu11
-    CALL imprimirColor
+    CALL printColor
     gotoxy 0,21,1
     LEA SI,str_songMenu12
-    CALL imprimirColor
+    CALL printColor
     gotoxy 0,22,1
     LEA SI,str_songMenu13
-    CALL imprimirColor
+    CALL printColor
     RET
-menuCanciones ENDP
+jukeboxScreen ENDP
 
-imprimirColor PROC
+printColor PROC
     imprimir:
     MOV AH,09
     MOV AL,[SI]
@@ -830,6 +830,6 @@ imprimirColor PROC
     CMP AL,'$'
     JNE imprimir
     RET
-imprimirColor ENDP
+printColor ENDP
 
 END;code segment
