@@ -30,8 +30,7 @@ LINK MAIN
 To run the program:
 
 1. In the DOS terminal, navigate to the directory containing the compiled `MAIN.EXE` file.
-2. Type:
-
+2. Type: `.\MAIN.EXE`
 
 ## Legal
 
